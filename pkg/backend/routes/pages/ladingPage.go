@@ -12,8 +12,9 @@ import (
 func LandingPageRoute() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Writer.Header().Set("Content-Type", "text/html; charset=utf-8")
+		c.Writer.Header().Set("User-Agent", "Vary")
 
-		if strings.Contains(c.Request.UserAgent(), "mobile") {
+		if strings.Contains(strings.ToLower(c.Request.UserAgent()), "mobile") {
 			err := mobile_page_home.Index().Render(c.Request.Context(), c.Writer)
 			if err != nil {
 				c.String(http.StatusInternalServerError, "render error: %v", err)

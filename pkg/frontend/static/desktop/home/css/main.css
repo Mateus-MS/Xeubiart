@@ -1,3 +1,23 @@
-.test {
-    width: 299px;
+body{
+    /* padding: 20px 40px; */
+}
+
+@font-face {
+    font-family: "secondary";
+    src: url("../../../fonts/secondary.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: Arial;
+
+    --main-color: #871414;
+    --secondary-color: #F4740F;
+    --background-color: white;
+    --contrast-color: #5AAD1F;
+
+    --horizontal-main-padding: 60px;
+    --header-height: 100px;
 }
