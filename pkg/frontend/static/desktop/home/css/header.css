@@ -2,7 +2,11 @@ header {
     display: flex;
     align-items: center;
     padding: 20px var(--horizontal-main-padding);
-    height: calc(var(--header-height) - var(--horizontal-main-padding));
+    height: var(--header-height);
+    position: sticky;
+    top: 0px;
+    background-color: var(--background-color);
+    box-sizing: border-box;
 }
 
 #pages_links{
