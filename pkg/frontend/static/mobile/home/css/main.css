@@ -1,5 +1,10 @@
 body{
-    padding: 20px 40px;
+    /* padding: 20px 40px; */
+}
+
+@font-face {
+    font-family: "secondary";
+    src: url("../../../fonts/secondary.ttf");
 }
 
 * {
@@ -7,5 +12,12 @@ body{
     margin: 0;
     border: 0;
     font-family: Arial;
-}
 
+    --main-color: #871414;
+    --secondary-color: #F4740F;
+    --background-color: white;
+    --contrast-color: #5AAD1F;
+
+    --horizontal-main-padding: 30px;
+    --header-height: 100px;
+}

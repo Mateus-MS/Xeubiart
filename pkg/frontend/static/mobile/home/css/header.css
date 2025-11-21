@@ -1,31 +1,29 @@
 header {
     display: flex;
-}
-
-#pages_links{
-    margin: 0 auto;
-
-    display: flex;
-    list-style: none;
-}
-
-#pages_links > li {
-    margin: 0 20px;
-    font-weight: bolder;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px var(--horizontal-main-padding);
+    height: var(--header-height);
+    box-sizing: border-box;
 }
 
 #logo {
-    width: 20px;
-    height: 20px;
-    background-color: red;
+    height: 25px;
 }
 
-/* login-methods */
+#login_methods > button {
+    font-weight: bold;
+    font-size: .7em;
+    padding: 5px 10px;
+}
 
-#login-methods{
-    height: 100px;
+#login_button{
+    background-color: transparent;
+    color: var(--secondary-color);
+}
 
-    & #login{
-        background-color: transparent;
-    }
+#register_button{
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    border-radius: 200px;
 }
