@@ -17,7 +17,8 @@ body{
     --secondary-color: #F4740F;
     --background-color: white;
     --contrast-color: #5AAD1F;
+    --light-color: #F3E1E5;
 
     --horizontal-main-padding: 30px;
-    --header-height: 100px;
+    --header-height: 70px;
 }

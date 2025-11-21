@@ -1,12 +1,12 @@
 header {
     display: flex;
     align-items: center;
-    padding: 20px var(--horizontal-main-padding);
     height: var(--header-height);
+    box-sizing: border-box;
+    padding: 20px var(--horizontal-main-padding);
+    background-color: var(--background-color);
     position: sticky;
     top: 0px;
-    background-color: var(--background-color);
-    box-sizing: border-box;
 }
 
 #pages_links{

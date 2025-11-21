@@ -4,7 +4,7 @@
     height: calc(100vh - var(--header-height));
 
     display: flex;
-    padding: 0 var(--horizontal-main-padding);
+    padding: 20px var(--horizontal-main-padding) 20px var(--horizontal-main-padding);
 }
 
 #CTA {
@@ -22,13 +22,15 @@
     font-weight: bolder;
     font-size: 2.2em;
     margin-bottom: .5em;
+    z-index: 2;
 }
 
 #CTA > p {
     width: 80%;
+    line-height: 1.2em;
     color: var(--secondary-color);
     font-family: "secondary";
-    font-size: 1em;
+    font-size: 1.15em;
 }
 
 #CTA > button {
@@ -45,15 +47,13 @@
 }
 
 #image {
-    width: 50%;
-    height: 100%;
+    width: 270px;
+    flex-grow: 1;
+    margin-left: auto;
     background-image: url("/static/img/perecos.png");
-    background-position: right;
-    background-size: contain;
+    background-position: center;
+    background-size: 107%;
     background-repeat: no-repeat;
-
-    position: absolute;
-    right: 0px;
 }
 
 #image > img {
