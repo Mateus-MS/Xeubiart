@@ -8,9 +8,9 @@
     grid-template-columns: 40% 40%;
     gap: 20%;
 
-    background-color: var(--light-color);
+    background-color: var(--main-color);
     background-size: 60%;
-    background-image: url("/static/svg/about-me-background.svg");
+    background-image: url("../svg/about-me-background.svg");
     background-position: right bottom;
     background-repeat: no-repeat;
 }
@@ -18,14 +18,14 @@
 #about-me h2 {
     font-size: 1.5em;
     font-weight: bolder;
-    color: var(--main-color);
+    color: var(--background-color);
     margin-bottom: .5em;
 }
 
 #about-me p {
     font-family: "secondary";
     width: 100%;
-    color: var(--main-color);
+    color: var(--background-color);
     font-size: 1em;
     line-height: 1.2em;
 }

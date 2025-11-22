@@ -16,5 +16,5 @@ func InitRoutes(app *app.App) {
 	app.Router.GET("/health", routes_utils.HealtheRoute())
 
 	// Static
-	app.Router.StaticFS("/static", http.Dir("./frontend/static"))
+	app.Router.StaticFS("/static", http.Dir("./frontend"))
 }

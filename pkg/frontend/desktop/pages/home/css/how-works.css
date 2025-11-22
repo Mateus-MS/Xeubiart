@@ -10,7 +10,7 @@
     position: relative;
     background-color: var(--light-color);
 
-    background-image: url("/static/svg/steps-background.svg");
+    background-image: url("../svg/steps-background.svg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

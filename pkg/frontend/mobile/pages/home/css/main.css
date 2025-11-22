@@ -4,7 +4,7 @@ body{
 
 @font-face {
     font-family: "secondary";
-    src: url("../../../fonts/secondary.ttf");
+    src: url("../../../../asset/fonts/secondary.ttf");
 }
 
 * {
@@ -19,6 +19,6 @@ body{
     --contrast-color: #5AAD1F;
     --light-color: #F3E1E5;
 
-    --horizontal-main-padding: 60px;
-    --header-height: 100px;
+    --horizontal-main-padding: 30px;
+    --header-height: 70px;
 }

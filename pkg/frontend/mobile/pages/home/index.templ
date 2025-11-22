@@ -8,16 +8,17 @@ templ Index(){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
 
-        <base href="static/mobile/home/">
+        <base href="static/mobile/pages/home/">
 
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="css/header.css" type="text/css">
         <link rel="stylesheet" href="css/hero.css" type="text/css">
         <link rel="stylesheet" href="css/about-me.css" type="text/css">
+        <link rel="stylesheet" href="css/how-works.css" type="text/css">
     </head>
     <body>
         <header>
-            <img id="logo" src="../../svg/logo.svg">
+            <img id="logo" src="./svg/logo.svg">
             <div id="login_methods">
                 <button id="login_button">Log In</button>
                 <button id="register_button">Create an account</button>
@@ -39,6 +40,38 @@ templ Index(){
             <div id="tattoo">
                 <h2>Tatuadora</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus pulvinar ullamcorper. Etiam porttitor non ex quis tincidunt.</p>
+            </div>
+        </section>
+        <section id="how-works">
+            <div class="step_container" id="step-1">
+                <div class="step_container-step_display">
+                    <div class="step_container-step_display-number">1</div>
+                    <div class="step_container-step_display-text">STEP</div>
+                </div>
+                <div class="step_container-img"></div>
+                <p class="step_container-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus pulvinar ullamcorper. Etiam porttitor non ex quis tincidunt.</p>
+            </div>
+            
+            <div id="separator-1"></div>
+            
+            <div class="step_container" id="step-2">
+                <p class="step_container-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus pulvinar ullamcorper. Etiam porttitor non ex quis tincidunt.</p>
+                <div class="step_container-img"></div>
+                <div class="step_container-step_display">
+                    <div class="step_container-step_display-number">2</div>
+                    <div class="step_container-step_display-text">STEP</div>
+                </div>
+            </div>
+            
+            <div id="separator-2"></div>
+            
+            <div class="step_container" id="step-3">
+                <div class="step_container-step_display">
+                    <div class="step_container-step_display-number">3</div>
+                    <div class="step_container-step_display-text">STEP</div>
+                </div>
+                <div class="step_container-img"></div>
+                <p class="step_container-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus pulvinar ullamcorper. Etiam porttitor non ex quis tincidunt.</p>
             </div>
         </section>
     </body>
