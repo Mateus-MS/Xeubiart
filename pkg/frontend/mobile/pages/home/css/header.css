@@ -11,8 +11,8 @@ header {
     background-color: var(--background-color);
 }
 
-#logo {
-    height: 25px;
+#header_logo {
+    height: 40px;
 }
 
 #login_methods > button {
