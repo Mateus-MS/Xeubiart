@@ -19,7 +19,7 @@ func TestBookingCreate_Success(t *testing.T) {
 	userID := primitive.NewObjectIDFromTimestamp(time.Now())
 	date := time.Now().Add(time.Hour * 2)
 
-	booking, err := booking_model.NewEntity(userID, date, "America/New_York")
+	booking, err := booking_model.NewEntity(userID, date, "America/New_York", booking_model.Tattoo)
 	require.NoError(t, err)
 
 	err = h.Services.Booking.Create(h.Ctx, booking)
@@ -37,7 +37,7 @@ func TestBookingCreate_TooCloseDate(t *testing.T) {
 	date := time.Now().In(loc)
 
 	// Try to make an booking instantly
-	booking, err := booking_model.NewEntity(userID, date, "America/New_York")
+	booking, err := booking_model.NewEntity(userID, date, "America/New_York", booking_model.Tattoo)
 	require.NoError(t, err)
 
 	err = h.Services.Booking.Create(h.Ctx, booking)
@@ -52,7 +52,7 @@ func TestBookingCreate_TooFarDate(t *testing.T) {
 	date := time.Now().AddDate(2, 0, 0)
 
 	// Try to make an booking 2 year from now
-	booking, err := booking_model.NewEntity(userID, date, "America/New_York")
+	booking, err := booking_model.NewEntity(userID, date, "America/New_York", booking_model.Tattoo)
 	require.NoError(t, err)
 
 	err = h.Services.Booking.Create(h.Ctx, booking)
