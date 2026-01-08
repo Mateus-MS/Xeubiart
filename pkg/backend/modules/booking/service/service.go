@@ -10,7 +10,7 @@ import (
 )
 
 // Type alias
-type BookingEntity = booking_model.BookingEntity
+type BookingEntity = booking_model.BookEntity
 
 type IService interface {
 	Create(context.Context, *BookingEntity) error

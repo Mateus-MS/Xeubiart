@@ -6,7 +6,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type BookingEntity = booking_model.BookingEntity
+type BookingEntity = booking_model.BookEntity
 
 type Repository struct {
 	internal_repository.BaseRepository
