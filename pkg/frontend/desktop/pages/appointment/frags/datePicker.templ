@@ -1,0 +1,44 @@
+package desktop_page_appointment_frags
+
+import ("time")
+
+templ DatePicker(){
+    {{
+        t := time.Date(time.Now().Year(), 5, 1, 11, 30, 0, 0, time.UTC)
+    }}
+
+    <div id="date_picker__container">
+
+        <div id="date_picker__weekDays">
+            for i := 0; i < 7; i++ {
+                {{
+                    runesArray := []rune(time.Weekday(i).String())
+                    firstThree := string(runesArray[:3])
+                }}
+                
+                <div class="date_picker__weekDay">{firstThree}</div>
+            }
+        </div>
+
+        <div id="date_picker__montDays__container">
+            {{startToInsertDays := false}}
+            {{lastMonthDay := t.AddDate(0, 1, -1).Day()}}
+
+            for i := 0; i < 6; i++ {
+                for j := 0; j < 7; j++ {
+                    if j == int(t.Weekday()) {
+                        {{startToInsertDays = true}}
+                    }
+
+                    {{dayCounter := (i * 7 + j) + 1 - int(t.Weekday())}}
+
+                    if startToInsertDays && dayCounter <= lastMonthDay {
+                        <div class="date_picker__monthDay">{dayCounter}</div>
+                    } else {
+                        <div class="date_picker__monthDay"></div>
+                    }
+                }
+            }
+        </div>
+    </div>
+}

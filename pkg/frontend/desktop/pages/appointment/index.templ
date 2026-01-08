@@ -1,0 +1,24 @@
+package desktop_page_appointment
+
+import (
+    desktop_page_appointment "github.com/Mateus-MS/Xeubiart.git/frontend/desktop/pages/appointment/frags"
+)
+
+templ Index(){
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <base href="static/desktop/pages/appointment/">
+
+        <link rel="stylesheet" href="frags/css/main.css" type="text/css">
+
+    </head>
+    <body>
+        @desktop_page_appointment.DatePicker()
+    </body>
+    </html>
+}

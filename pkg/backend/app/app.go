@@ -1,13 +1,25 @@
 package app
 
-import "github.com/gin-gonic/gin"
+import (
+	appointment_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/service"
+	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/mongo"
+)
 
-type App struct {
-	Router *gin.Engine
+type Services struct {
+	Appointment appointment_service.IService
 }
 
-func NewApp(router *gin.Engine) *App {
+type App struct {
+	DB       *mongo.Client
+	Router   *gin.Engine
+	Services *Services
+}
+
+func NewApp(db *mongo.Client, router *gin.Engine, services *Services) *App {
 	return &App{
-		Router: router,
+		DB:       db,
+		Router:   router,
+		Services: services,
 	}
 }
