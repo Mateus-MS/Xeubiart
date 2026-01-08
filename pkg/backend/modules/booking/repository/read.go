@@ -10,7 +10,7 @@ import (
 func (r *Repository) ReadByUserID(ctx context.Context, userID primitive.ObjectID) (*BookingEntity, error) {
 	booking := BookingEntity{}
 
-	err := r.Read(ctx, bson.M{"_id": userID}, booking)
+	err := r.ReadOne(ctx, bson.M{"_id": userID}, booking)
 	if err != nil {
 		return &booking, err
 	}

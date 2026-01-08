@@ -2,6 +2,7 @@ package appointment_service
 
 import (
 	"context"
+	"time"
 
 	appointment_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/model"
 	appointment_repository "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/repository"
@@ -15,6 +16,7 @@ type AppointmentEntity = appointment_model.AppointmentEntity
 type IService interface {
 	Create(context.Context, *AppointmentEntity) error
 	ReadByUserID(context.Context, primitive.ObjectID) (*AppointmentEntity, error)
+	ReadAllByMonth(ctx context.Context, year int, month time.Month) ([]AppointmentEntity, error)
 }
 
 type service struct {

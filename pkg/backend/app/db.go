@@ -3,7 +3,6 @@ package app
 import (
 	"context"
 	"log"
-	"os"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -17,7 +16,7 @@ func StartDBConnection() (mongoClient *mongo.Client) {
 	var err error
 	if mongoClient, err = mongo.Connect(
 		ctx,
-		options.Client().ApplyURI(os.Getenv("MONGO_URI"))); err != nil {
+		options.Client().ApplyURI("mongodb://adm:adm@192.168.1.94:5432")); err != nil {
 		log.Fatal("Mongo connection error: " + err.Error())
 	}
 
