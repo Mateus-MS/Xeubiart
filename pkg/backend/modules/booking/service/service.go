@@ -2,6 +2,7 @@ package booking_service
 
 import (
 	"context"
+	"time"
 
 	booking_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/booking/model"
 	booking_repository "github.com/Mateus-MS/Xeubiart.git/backend/modules/booking/repository"
@@ -15,6 +16,7 @@ type BookingEntity = booking_model.BookEntity
 type IService interface {
 	Create(context.Context, *BookingEntity) error
 	ReadByUserID(context.Context, primitive.ObjectID) (*BookingEntity, error)
+	ReadAllByMonth(ctx context.Context, year int, month time.Month) ([]BookingEntity, error)
 }
 
 type service struct {

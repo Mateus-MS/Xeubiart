@@ -30,3 +30,7 @@ func (s *service) Create(ctx context.Context, appointment *BookingEntity) error 
 func (s *service) ReadByUserID(ctx context.Context, userID primitive.ObjectID) (*BookingEntity, error) {
 	return s.repository.ReadByUserID(ctx, userID)
 }
+
+func (s *service) ReadAllByMonth(ctx context.Context, year int, month time.Month) ([]BookingEntity, error) {
+	return s.repository.ReadAllByMonth(ctx, year, month)
+}

@@ -19,7 +19,7 @@ func TestScheduleRead_Success(t *testing.T) {
 	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, actualTime.Add(time.Hour*5), "America/New_York")
 	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, actualTime.Add(time.Hour*5), "America/New_York")
 
-	dto, err := h.Services.Schedule.ReadAllByMonth(h.Ctx, actualTime.Year(), actualTime.Month())
+	dto, err := h.Services.Schedule.ReadAllByMonth(h.Ctx, actualTime.Year(), actualTime.Month(), "America/New_York")
 	assert.NoError(t, err)
 	assert.Equal(t, 4, len(dto.Schedule.Appointments))
 }

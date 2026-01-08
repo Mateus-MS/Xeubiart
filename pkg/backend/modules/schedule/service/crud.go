@@ -7,7 +7,7 @@ import (
 	schedule_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/schedule/model"
 )
 
-func (s *service) ReadAllByMonth(ctx context.Context, year int, month time.Month) (*MonthScheduleDTO, error) {
+func (s *service) ReadAllByMonth(ctx context.Context, year int, month time.Month, timezone string) (*MonthScheduleDTO, error) {
 	dto := &schedule_model.MonthScheduleDTO{}
 
 	appointments, err := s.DepsServices.Appointment.ReadAllByMonth(ctx, year, month)
@@ -15,7 +15,10 @@ func (s *service) ReadAllByMonth(ctx context.Context, year int, month time.Month
 		return dto, err
 	}
 
-	// TODO: do the same to bookings
+	booking, err := s.DepsServices.Booking.ReadAllByMonth(ctx, year, month)
+	if err != nil {
+		return dto, err
+	}
 
-	return schedule_model.NewMonthScheduleDTO(appointments, nil, year, month, "America/New_York"), nil
+	return schedule_model.NewMonthScheduleDTO(appointments, booking, year, month, timezone), nil
 }
