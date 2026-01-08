@@ -1,12 +1,12 @@
-package appointment_repository
+package booking_repository
 
 import (
 	internal_repository "github.com/Mateus-MS/Xeubiart.git/backend/internal/repository"
-	appointment_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/model"
+	booking_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/booking/model"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type AppointmentEntity = appointment_model.AppointmentEntity
+type BookingEntity = booking_model.BookingEntity
 
 type Repository struct {
 	internal_repository.BaseRepository

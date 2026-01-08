@@ -1,30 +1,25 @@
-package appointment_model
+package booking_model
 
 import (
-	"errors"
 	"time"
 
 	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-var (
-	ErrInvalidTimezone = errors.New("invalid timezone")
-)
-
-type AppointmentEntity struct {
+type BookingEntity struct {
 	UserID primitive.ObjectID
 	Date   time.Time
 }
 
 // It expects the raw date to be converted to UTC
-func NewEntity(userID primitive.ObjectID, localDate time.Time, timezone string) (*AppointmentEntity, error) {
+func NewEntity(userID primitive.ObjectID, localDate time.Time, timezone string) (*BookingEntity, error) {
 	dateUTC, err := internal_datetime.NormalizeToUTC(localDate, timezone)
 	if err != nil {
 		return nil, err
 	}
 
-	return &AppointmentEntity{
+	return &BookingEntity{
 		UserID: userID,
 		Date:   dateUTC,
 	}, nil

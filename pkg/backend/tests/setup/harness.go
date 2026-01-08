@@ -5,10 +5,12 @@ import (
 	"testing"
 
 	appointment_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/service"
+	booking_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/booking/service"
 )
 
 type services struct {
 	Appointment appointment_service.IService
+	Booking     booking_service.IService
 }
 
 type Harness struct {
@@ -33,6 +35,7 @@ func NewHarness(t *testing.T) *Harness {
 
 	services := services{
 		Appointment: appointment_service.New(testDB.Database.Collection("appointment")),
+		Booking:     booking_service.New(testDB.Database.Collection("booking")),
 	}
 
 	return &Harness{
