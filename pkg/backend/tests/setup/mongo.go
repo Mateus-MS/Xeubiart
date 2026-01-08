@@ -21,7 +21,7 @@ func NewTestDB(tName string) (*TestDB, error) {
 	// Connect
 	client, err := mongo.Connect(
 		ctx,
-		options.Client().ApplyURI("mongodb://192.168.1.94:5432"),
+		options.Client().ApplyURI("mongodb://adm:adm@192.168.1.94:5432"),
 	)
 	if err != nil {
 		return nil, err

@@ -41,7 +41,7 @@ func TestAppointmentCreate_TooCloseDate(t *testing.T) {
 	require.NoError(t, err)
 
 	err = h.Services.Appointment.Create(h.Ctx, appointment)
-	assert.ErrorIs(t, err, appointment_service.ErrInvalidDate)
+	assert.ErrorIs(t, err, appointment_service.ErrInvalidAppointmentDate)
 }
 
 func TestAppointmentCreate_TooFarDate(t *testing.T) {
@@ -56,5 +56,5 @@ func TestAppointmentCreate_TooFarDate(t *testing.T) {
 	require.NoError(t, err)
 
 	err = h.Services.Appointment.Create(h.Ctx, appointment)
-	assert.ErrorIs(t, err, appointment_service.ErrInvalidDate)
+	assert.ErrorIs(t, err, appointment_service.ErrInvalidAppointmentDate)
 }

@@ -5,5 +5,5 @@ import (
 )
 
 var (
-	ErrInvalidDate = errors.New("the given date is invalid")
+	ErrInvalidAppointmentDate = errors.New("the given date is invalid")
 )
