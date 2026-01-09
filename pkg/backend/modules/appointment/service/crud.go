@@ -21,7 +21,7 @@ func (s *service) Create(ctx context.Context, appointment *AppointmentEntity) er
 	}
 
 	// TODO: prevent appointment conflicts
-	// - An appointment cannot be appointed within less than 2 hours from another
+	// - An appointment cannot be appointed within less than 3 hours from another
 	// - An appointment cannot be appointed in the same day as a booking
 	// - An appointment cannot be appointed out from working hours (9-18) (9am-6pm)UTC
 

@@ -4,6 +4,7 @@ import (
 	"testing"
 	"time"
 
+	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	integration_setup "github.com/Mateus-MS/Xeubiart.git/backend/tests/setup"
 	integration_fixtures "github.com/Mateus-MS/Xeubiart.git/backend/tests/setup/fixtures"
 	"github.com/stretchr/testify/assert"
@@ -13,13 +14,12 @@ func TestScheduleRead_Success(t *testing.T) {
 	t.Parallel()
 	h := integration_setup.NewHarness(t)
 
-	actualTime := time.Now()
-	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, actualTime.Add(time.Hour*5), "America/New_York")
-	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, actualTime.Add(time.Hour*5), "America/New_York")
-	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, actualTime.Add(time.Hour*5), "America/New_York")
-	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, actualTime.Add(time.Hour*5), "America/New_York")
+	location, _ := time.LoadLocation("America/New_York")
+	date, err := internal_datetime.NewLocalFromTime(time.Date(2026, time.January, 15, 12, 0, 0, 0, location))
 
-	dto, err := h.Services.Schedule.ReadAllByMonth(h.Ctx, actualTime.Year(), actualTime.Month(), "America/New_York")
+	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, date)
+
+	result, err := h.Services.Schedule.ReadByMonth(h.Ctx, 2026, time.January)
 	assert.NoError(t, err)
-	assert.Equal(t, 4, len(dto.Schedule.Appointments))
+	assert.Equal(t, 1, len(result.Schedule.Appointments))
 }

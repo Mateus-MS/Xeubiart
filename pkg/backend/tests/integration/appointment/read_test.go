@@ -4,6 +4,7 @@ import (
 	"testing"
 	"time"
 
+	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	integration_setup "github.com/Mateus-MS/Xeubiart.git/backend/tests/setup"
 	integration_fixtures "github.com/Mateus-MS/Xeubiart.git/backend/tests/setup/fixtures"
 	"github.com/stretchr/testify/assert"
@@ -17,7 +18,9 @@ func TestAppointmentRead_Success(t *testing.T) {
 	actualTime := time.Now()
 
 	// Add a new appointment into database
-	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, actualTime.Add(time.Hour*5), "America/New_York")
+	location, _ := time.LoadLocation("America/New_York")
+	date, err := internal_datetime.NewLocalFromTime(time.Now().In(location))
+	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, date)
 
 	// Try to read it querying by month
 	appointments, err := h.Services.Appointment.ReadAllByMonth(h.Ctx, actualTime.Year(), actualTime.Month())

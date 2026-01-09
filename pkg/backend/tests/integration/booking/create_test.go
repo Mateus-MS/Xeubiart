@@ -4,6 +4,7 @@ import (
 	"testing"
 	"time"
 
+	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	booking_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/booking/model"
 	booking_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/booking/service"
 	integration_setup "github.com/Mateus-MS/Xeubiart.git/backend/tests/setup"
@@ -17,9 +18,11 @@ func TestBookingCreate_Success(t *testing.T) {
 	h := integration_setup.NewHarness(t)
 
 	userID := primitive.NewObjectIDFromTimestamp(time.Now())
-	date := time.Now().Add(time.Hour * 2)
+	location, _ := time.LoadLocation("America/New_York")
+	date, err := internal_datetime.NewLocalWithLocationOverride(time.Now().Add(time.Hour*2), location)
 
-	booking, err := booking_model.NewEntity(userID, date, "America/New_York", booking_model.Tattoo)
+	// Try to make an booking instantly
+	booking, err := booking_model.NewEntity(userID, date, booking_model.Tattoo)
 	require.NoError(t, err)
 
 	err = h.Services.Booking.Create(h.Ctx, booking)
@@ -32,12 +35,11 @@ func TestBookingCreate_TooCloseDate(t *testing.T) {
 
 	userID := primitive.NewObjectIDFromTimestamp(time.Now())
 
-	// Threat the date as from the received location
-	loc, _ := time.LoadLocation("America/New_York")
-	date := time.Now().In(loc)
+	location, _ := time.LoadLocation("America/New_York")
+	date, err := internal_datetime.NewLocalFromTime(time.Now().In(location))
 
 	// Try to make an booking instantly
-	booking, err := booking_model.NewEntity(userID, date, "America/New_York", booking_model.Tattoo)
+	booking, err := booking_model.NewEntity(userID, date, booking_model.Tattoo)
 	require.NoError(t, err)
 
 	err = h.Services.Booking.Create(h.Ctx, booking)
@@ -49,10 +51,11 @@ func TestBookingCreate_TooFarDate(t *testing.T) {
 	h := integration_setup.NewHarness(t)
 
 	userID := primitive.NewObjectIDFromTimestamp(time.Now())
-	date := time.Now().AddDate(2, 0, 0)
+	location, _ := time.LoadLocation("America/New_York")
+	date, err := internal_datetime.NewLocalWithLocationOverride(time.Now().AddDate(2, 0, 0), location)
 
-	// Try to make an booking 2 year from now
-	booking, err := booking_model.NewEntity(userID, date, "America/New_York", booking_model.Tattoo)
+	// Try to make an booking instantly
+	booking, err := booking_model.NewEntity(userID, date, booking_model.Tattoo)
 	require.NoError(t, err)
 
 	err = h.Services.Booking.Create(h.Ctx, booking)

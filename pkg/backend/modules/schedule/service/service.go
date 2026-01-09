@@ -12,7 +12,7 @@ import (
 type MonthScheduleDTO = schedule_model.MonthScheduleDTO
 
 type IService interface {
-	ReadAllByMonth(context.Context, int, time.Month, string) (*MonthScheduleDTO, error)
+	ReadByMonth(context.Context, int, time.Month) (*MonthScheduleDTO, error)
 }
 
 type service struct {

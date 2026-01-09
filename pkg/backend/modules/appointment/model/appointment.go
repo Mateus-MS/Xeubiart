@@ -2,7 +2,6 @@ package appointment_model
 
 import (
 	"errors"
-	"time"
 
 	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -16,19 +15,16 @@ var (
 // covering design, location, and size.
 type AppointmentEntity struct {
 	UserID primitive.ObjectID
-	Date   time.Time
+	Date   internal_datetime.UTCTime
 }
 
 // It expects a local date to be converted to UTC
-func NewEntity(userID primitive.ObjectID, localDate time.Time, timezone string) (*AppointmentEntity, error) {
+func NewEntity(userID primitive.ObjectID, localDate *internal_datetime.LocalTime) (*AppointmentEntity, error) {
 	// Converts the received local time to UTC
-	dateUTC, err := internal_datetime.NormalizeToUTC(localDate, timezone)
-	if err != nil {
-		return nil, err
-	}
+	utcTime := localDate.ToUTCTime()
 
 	return &AppointmentEntity{
 		UserID: userID,
-		Date:   dateUTC,
+		Date:   utcTime,
 	}, nil
 }

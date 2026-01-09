@@ -24,7 +24,7 @@ type MonthScheduleDTO struct {
 	Schedule Schedule `json:"schedule"`
 }
 
-func NewMonthScheduleDTO(appointments []appointment_model.AppointmentEntity, bookings []booking_model.BookEntity, year int, month time.Month, timezone string) *MonthScheduleDTO {
+func NewMonthScheduleDTO(appointments []appointment_model.AppointmentEntity, bookings []booking_model.BookEntity, year int, month time.Month) *MonthScheduleDTO {
 	return &MonthScheduleDTO{
 		Date: struct {
 			Year         int          `json:"year"`
