@@ -5,6 +5,7 @@ import (
 	"errors"
 	"time"
 
+	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -30,9 +31,15 @@ func (s *service) Create(ctx context.Context, appointment *AppointmentEntity) er
 		return ErrAppointmentTimeConflict
 	}
 
+	// An appointment must be within working hours
+	// TODO: curretly an appointment can be booked to 17:50, think how to solve this.
+	// maybe blocking anything to be booked after 15:00...
+	if !appointment.Date.IsValidWorkingHours() {
+		return internal_datetime.ErrOutsideWorkingHours
+	}
+
 	// TODO: prevent appointment conflicts
 	// - An appointment cannot be appointed in the same day as a booking
-	// - An appointment cannot be appointed out from working hours (9-18) (9am-6pm)UTC
 
 	return s.repository.Create(ctx, appointment)
 }

@@ -9,7 +9,8 @@ import (
 )
 
 var (
-	ErrNonUTCTime = errors.New("in order to create a UTCTime, the given timezone should be setted as UTC")
+	ErrNonUTCTime          = errors.New("in order to create a UTCTime, the given timezone should be setted as UTC")
+	ErrOutsideWorkingHours = errors.New("the given time is not within working hours (09:00 18:00 UTC)")
 )
 
 // UTCTime wraps time.Time to represent a UTC timestamp
@@ -37,6 +38,22 @@ func (ut *UTCTime) ToLocalTime(local *time.Location) (*LocalTime, error) {
 	return &LocalTime{
 		Time: ut.Time.In(local),
 	}, nil
+}
+
+func (ut *UTCTime) IsValidWorkingHours() bool {
+	t := ut.Time // UTC time.Time
+
+	hour, min, _ := t.Clock()
+
+	startMinutes := 9 * 60 // 09:00
+	endMinutes := 18 * 60  // 18:00
+	current := hour*60 + min
+
+	if current < startMinutes || current >= endMinutes {
+		return false
+	}
+
+	return true
 }
 
 // Custom BSON marshaling ensures Mongo stores it as a proper date,

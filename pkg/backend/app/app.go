@@ -2,6 +2,7 @@ package app
 
 import (
 	appointment_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/service"
+	schedule_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/schedule/service"
 	utils_models "github.com/Mateus-MS/Xeubiart.git/backend/utils/models"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -9,6 +10,7 @@ import (
 
 type Services struct {
 	Appointment appointment_service.IService
+	Schedule    schedule_service.IService
 }
 
 type App struct {

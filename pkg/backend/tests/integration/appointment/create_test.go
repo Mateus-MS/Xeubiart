@@ -68,7 +68,7 @@ func TestAppointmentCreate_TooCloseAppointments(t *testing.T) {
 
 	userID := primitive.NewObjectIDFromTimestamp(h.Clock.Now())
 	location, _ := time.LoadLocation("America/New_York")
-	date, err := internal_datetime.NewLocalFromTime(h.Clock.Now().Add(time.Hour * 4).In(location))
+	date, err := internal_datetime.NewLocalFromTime(h.Clock.Now().Add(time.Hour * 2).In(location))
 
 	appointmentOBJ, err := appointment_model.NewEntity(userID, date)
 	require.NoError(t, err)
