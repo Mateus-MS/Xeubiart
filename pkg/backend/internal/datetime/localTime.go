@@ -33,22 +33,19 @@ func NewLocalFromTime(t time.Time) (*LocalTime, error) {
 	}, nil
 }
 
-// NewLocalWithLocationOverride creates a new LocaTime from a time ignoring any setted timezone conversion overriding it
-// Example: 2026-01-01 12:00 +8 Asia/Shanghai -> 2026-01-01 12:00 -5 America/New_York. -- Ignoring the 13 hours difference
-// Keep this func usage only to tests...
-func NewLocalWithLocationOverride(t time.Time, loc *time.Location) (*LocalTime, error) {
-	if loc == time.UTC {
-		return nil, ErrUTCTime
+// It expects a string in the following format: year-month-day hour:minute:second
+func NewLocalFromString(str string, loc *time.Location) (*LocalTime, error) {
+	layout := "2006-01-02 15:04:05"
+
+	t, err := time.ParseInLocation(layout, str, loc)
+	if err != nil {
+		return &LocalTime{}, err
 	}
 
-	temp := time.Date(
-		t.Year(), t.Month(), t.Day(),
-		t.Hour(), t.Minute(), t.Second(),
-		t.Nanosecond(),
-		loc,
-	)
+	lt, err := NewLocalFromTime(t)
+	if err != nil {
+		return &LocalTime{}, err
+	}
 
-	return &LocalTime{
-		Time: temp,
-	}, nil
+	return lt, nil
 }

@@ -13,25 +13,21 @@ type Schedule struct {
 	Bookings     []booking_model.BookEntity            `json:"bookings"`
 }
 
-type MonthScheduleDTO struct {
-	Date struct {
-		Year         int          `json:"year"`
-		Month        time.Month   `json:"month"`
-		FirstWeekday time.Weekday `json:"firstWeekday"`
-		DaysInMonth  int          `json:"daysInMonth"`
-	} `json:"date"`
+type date struct {
+	Year         int          `json:"year"`
+	Month        time.Month   `json:"month"`
+	FirstWeekday time.Weekday `json:"firstWeekday"`
+	DaysInMonth  int          `json:"daysInMonth"`
+}
 
+type MonthScheduleDTO struct {
+	Date     date     `json:"date"`
 	Schedule Schedule `json:"schedule"`
 }
 
 func NewMonthScheduleDTO(appointments []appointment_model.AppointmentEntity, bookings []booking_model.BookEntity, year int, month time.Month) *MonthScheduleDTO {
 	return &MonthScheduleDTO{
-		Date: struct {
-			Year         int          `json:"year"`
-			Month        time.Month   `json:"month"`
-			FirstWeekday time.Weekday `json:"firstWeekday"`
-			DaysInMonth  int          `json:"daysInMonth"`
-		}{
+		Date: date{
 			Year:         year,
 			Month:        month,
 			FirstWeekday: 0,  // Temp

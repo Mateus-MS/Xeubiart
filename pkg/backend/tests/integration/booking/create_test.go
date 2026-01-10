@@ -19,7 +19,7 @@ func TestBookingCreate_Success(t *testing.T) {
 
 	userID := primitive.NewObjectIDFromTimestamp(time.Now())
 	location, _ := time.LoadLocation("America/New_York")
-	date, err := internal_datetime.NewLocalWithLocationOverride(time.Now().Add(time.Hour*2), location)
+	date, err := internal_datetime.NewLocalFromTime(time.Now().Add(time.Hour * 2).In(location))
 
 	// Try to make an booking instantly
 	booking, err := booking_model.NewEntity(userID, date, booking_model.Tattoo)
@@ -52,7 +52,7 @@ func TestBookingCreate_TooFarDate(t *testing.T) {
 
 	userID := primitive.NewObjectIDFromTimestamp(time.Now())
 	location, _ := time.LoadLocation("America/New_York")
-	date, err := internal_datetime.NewLocalWithLocationOverride(time.Now().AddDate(2, 0, 0), location)
+	date, err := internal_datetime.NewLocalFromTime(time.Now().AddDate(2, 0, 0).In(location))
 
 	// Try to make an booking instantly
 	booking, err := booking_model.NewEntity(userID, date, booking_model.Tattoo)
