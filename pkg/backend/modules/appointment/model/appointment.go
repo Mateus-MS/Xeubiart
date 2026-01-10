@@ -14,6 +14,7 @@ var (
 // An appointment is a meeting to plan the tattoo with the customer,
 // covering design, location, and size.
 type AppointmentEntity struct {
+	ID     primitive.ObjectID
 	UserID primitive.ObjectID
 	Date   internal_datetime.UTCTime
 }
@@ -24,6 +25,7 @@ func NewEntity(userID primitive.ObjectID, localDate *internal_datetime.LocalTime
 	utcTime := localDate.ToUTCTime()
 
 	return &AppointmentEntity{
+		ID:     primitive.NewObjectID(),
 		UserID: userID,
 		Date:   utcTime,
 	}, nil

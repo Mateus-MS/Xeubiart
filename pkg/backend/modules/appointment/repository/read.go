@@ -19,6 +19,24 @@ func (r *Repository) ReadByUserID(ctx context.Context, userID primitive.ObjectID
 	return &appointment, nil
 }
 
+func (r *Repository) ReadInRange(ctx context.Context, from, to time.Time) ([]AppointmentEntity, error) {
+	appointments := []AppointmentEntity{}
+
+	filter := bson.M{
+		"date": bson.M{
+			"$gte": from,
+			"$lt":  to,
+		},
+	}
+
+	err := r.ReadAll(ctx, filter, &appointments)
+	if err != nil {
+		return appointments, err
+	}
+
+	return appointments, nil
+}
+
 func (r *Repository) ReadAllByMonth(ctx context.Context, year int, month time.Month) ([]AppointmentEntity, error) {
 	appointments := []AppointmentEntity{}
 

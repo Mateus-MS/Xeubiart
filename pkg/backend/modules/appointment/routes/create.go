@@ -5,9 +5,9 @@ import (
 	"net/http"
 
 	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
-	routes_utils "github.com/Mateus-MS/Xeubiart.git/backend/internal/utils/routes"
 	appointment_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/model"
 	appointment_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/service"
+	routes_utils "github.com/Mateus-MS/Xeubiart.git/backend/utils/routes"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )

@@ -15,7 +15,7 @@ type TestDB struct {
 	Name     string
 }
 
-func NewTestDB(tName string) (*TestDB, error) {
+func NewTestDB() (*TestDB, error) {
 	ctx := context.Background()
 
 	// Connect
@@ -29,8 +29,7 @@ func NewTestDB(tName string) (*TestDB, error) {
 
 	// Generate a random name
 	dbName := fmt.Sprintf(
-		"test_%s_%d",
-		tName,
+		"test_%d",
 		time.Now().UnixNano(),
 	)
 
