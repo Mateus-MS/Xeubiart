@@ -2,8 +2,8 @@ package schedule_service
 
 import (
 	"context"
-	"time"
 
+	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	appointment_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/service"
 	booking_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/booking/service"
 	schedule_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/schedule/model"
@@ -12,7 +12,7 @@ import (
 type MonthScheduleDTO = schedule_model.MonthScheduleDTO
 
 type IService interface {
-	ReadByMonth(context.Context, int, time.Month) (*MonthScheduleDTO, error)
+	ReadByMonth(context.Context, internal_datetime.UTCTime) (*MonthScheduleDTO, error)
 }
 
 type service struct {

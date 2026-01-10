@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -37,23 +38,9 @@ func (r *Repository) ReadInRange(ctx context.Context, from, to time.Time) ([]App
 	return appointments, nil
 }
 
-func (r *Repository) ReadAllByMonth(ctx context.Context, year int, month time.Month) ([]AppointmentEntity, error) {
-	appointments := []AppointmentEntity{}
-
-	start := time.Date(year, month, 1, 0, 0, 0, 0, time.UTC)
+func (r *Repository) ReadAllByMonth(ctx context.Context, utcTime internal_datetime.UTCTime) ([]AppointmentEntity, error) {
+	start := time.Date(utcTime.Year(), utcTime.Month(), 1, 0, 0, 0, 0, time.UTC)
 	end := start.AddDate(0, 1, 0)
 
-	filter := bson.M{
-		"date": bson.M{
-			"$gte": start,
-			"$lt":  end,
-		},
-	}
-
-	err := r.ReadAll(ctx, filter, &appointments)
-	if err != nil {
-		return appointments, err
-	}
-
-	return appointments, nil
+	return r.ReadInRange(ctx, start, end)
 }

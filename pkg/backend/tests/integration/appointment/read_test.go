@@ -15,15 +15,13 @@ func TestAppointmentRead_Success(t *testing.T) {
 	t.Parallel()
 	h := integration_setup.NewHarness(t)
 
-	actualTime := time.Now()
-
 	// Add a new appointment into database
 	location, _ := time.LoadLocation("America/New_York")
-	date, err := internal_datetime.NewLocalFromTime(time.Now().In(location))
-	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, date)
+	localTime, err := internal_datetime.NewLocalFromTime(time.Now().In(location))
+	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, localTime)
 
 	// Try to read it querying by month
-	appointments, err := h.Services.Appointment.ReadAllByMonth(h.Ctx, actualTime.Year(), actualTime.Month())
+	appointments, err := h.Services.Appointment.ReadAllByMonth(h.Ctx, localTime.ToUTCTime())
 
 	// Assert
 	require.NoError(t, err)

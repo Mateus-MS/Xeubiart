@@ -2,8 +2,8 @@ package appointment_service
 
 import (
 	"context"
-	"time"
 
+	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	appointment_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/model"
 	appointment_repository "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/repository"
 	utils_models "github.com/Mateus-MS/Xeubiart.git/backend/utils/models"
@@ -17,7 +17,7 @@ type AppointmentEntity = appointment_model.AppointmentEntity
 type IService interface {
 	Create(context.Context, *AppointmentEntity) error
 	ReadByUserID(context.Context, primitive.ObjectID) (*AppointmentEntity, error)
-	ReadAllByMonth(ctx context.Context, year int, month time.Month) ([]AppointmentEntity, error)
+	ReadAllByMonth(context.Context, internal_datetime.UTCTime) ([]AppointmentEntity, error)
 }
 
 type service struct {

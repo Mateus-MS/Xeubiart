@@ -48,6 +48,6 @@ func (s *service) ReadByUserID(ctx context.Context, userID primitive.ObjectID) (
 	return s.repository.ReadByUserID(ctx, userID)
 }
 
-func (s *service) ReadAllByMonth(ctx context.Context, year int, month time.Month) ([]AppointmentEntity, error) {
-	return s.repository.ReadAllByMonth(ctx, year, month)
+func (s *service) ReadAllByMonth(ctx context.Context, utcTime internal_datetime.UTCTime) ([]AppointmentEntity, error) {
+	return s.repository.ReadAllByMonth(ctx, utcTime)
 }

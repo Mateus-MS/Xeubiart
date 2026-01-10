@@ -6,7 +6,9 @@ import (
 	"strconv"
 	"time"
 
+	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	schedule_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/schedule/service"
+	routes_utils "github.com/Mateus-MS/Xeubiart.git/backend/utils/routes"
 	"github.com/gin-gonic/gin"
 )
 
@@ -30,13 +32,21 @@ func ScheduleReadMonthlyRoute(scheduleService schedule_service.IService) gin.Han
 		month := time.Month(monthInt)
 
 		// Get the timezone cookie
-		// loc, err := routes_utils.LoadLocationFromCookie(c)
-		// if err != nil {
-		// 	c.AbortWithError(http.StatusBadRequest, err)
-		// 	return
-		// }
+		loc, err := routes_utils.LoadLocationFromCookie(c)
+		if err != nil {
+			c.AbortWithError(http.StatusBadRequest, err)
+			return
+		}
 
-		schedule, err := scheduleService.ReadByMonth(c.Request.Context(), yearInt, month)
+		// Create the local time with received data
+		localTime, err := internal_datetime.NewLocalFromTime(time.Date(yearInt, month, 1, 0, 0, 0, 0, loc))
+		if err != nil {
+			c.AbortWithError(http.StatusBadRequest, err)
+			return
+		}
+
+		// Try to read from DB converting the local time to UTC
+		schedule, err := scheduleService.ReadByMonth(c.Request.Context(), localTime.ToUTCTime())
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
