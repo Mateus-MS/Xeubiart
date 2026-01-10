@@ -1,8 +1,6 @@
 package schedule_model
 
 import (
-	"encoding/json"
-	"fmt"
 	"time"
 
 	appointment_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/model"
@@ -11,8 +9,8 @@ import (
 
 // Represents all month's callendar
 type Schedule struct {
-	Appointments []appointment_model.AppointmentEntity `json:"appointments"`
-	Bookings     []booking_model.BookEntity            `json:"bookings"`
+	Appointments []appointment_model.AppointmentDTO `json:"appointments"`
+	Bookings     []booking_model.BookEntity         `json:"bookings"`
 }
 
 type date struct {
@@ -27,16 +25,7 @@ type MonthScheduleDTO struct {
 	Schedule Schedule `json:"schedule"`
 }
 
-func (dto MonthScheduleDTO) String() string {
-	// Convert to JSON for human-readable output
-	data, err := json.MarshalIndent(dto, "", "  ")
-	if err != nil {
-		return fmt.Sprintf("MonthScheduleDTO{error marshalling: %v}", err)
-	}
-	return string(data)
-}
-
-func NewMonthScheduleDTO(appointments []appointment_model.AppointmentEntity, bookings []booking_model.BookEntity, year int, month time.Month) *MonthScheduleDTO {
+func NewMonthScheduleDTO(appointments []appointment_model.AppointmentDTO, bookings []booking_model.BookEntity, year int, month time.Month) *MonthScheduleDTO {
 	return &MonthScheduleDTO{
 		Date: date{
 			Year:         year,

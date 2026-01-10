@@ -29,6 +29,13 @@ func ScheduleReadMonthlyRoute(scheduleService schedule_service.IService) gin.Han
 		}
 		month := time.Month(monthInt)
 
+		// Get the timezone cookie
+		// loc, err := routes_utils.LoadLocationFromCookie(c)
+		// if err != nil {
+		// 	c.AbortWithError(http.StatusBadRequest, err)
+		// 	return
+		// }
+
 		schedule, err := scheduleService.ReadByMonth(c.Request.Context(), yearInt, month)
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
