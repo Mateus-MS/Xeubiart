@@ -17,10 +17,6 @@ func (r *BaseRepository) Create(ctx context.Context, doc any) error {
 	return err
 }
 
-func (r *BaseRepository) Read(ctx context.Context, filter bson.M, out any) error {
-	return r.Collection.FindOne(ctx, filter).Decode(out)
-}
-
 func (r *BaseRepository) Update(ctx context.Context, filter bson.M, update bson.M) error {
 	result, err := r.Collection.UpdateOne(ctx, filter, update)
 	if err != nil {

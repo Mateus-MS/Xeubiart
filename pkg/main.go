@@ -5,7 +5,9 @@ import (
 
 	"github.com/Mateus-MS/Xeubiart.git/backend/app"
 	appointment_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/service"
+	schedule_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/schedule/service"
 	"github.com/Mateus-MS/Xeubiart.git/backend/routes"
+	utils_models "github.com/Mateus-MS/Xeubiart.git/backend/utils/models"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -18,8 +20,14 @@ func main() {
 	db := app.StartDBConnection()
 	router := gin.Default()
 
+	appClock := utils_models.AppClock{}
+
+	appointmentService := appointment_service.New(db.Database("cluster").Collection("appointment"), appClock)
+	scheduelService := schedule_service.New(appointmentService, nil)
+
 	services := app.Services{
-		Appointment: appointment_service.New(db.Database("cluster").Collection("appointment")),
+		Appointment: appointmentService,
+		Schedule:    scheduelService,
 	}
 
 	aplication := app.NewApp(

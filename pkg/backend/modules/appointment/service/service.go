@@ -3,8 +3,10 @@ package appointment_service
 import (
 	"context"
 
+	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	appointment_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/model"
 	appointment_repository "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/repository"
+	utils_models "github.com/Mateus-MS/Xeubiart.git/backend/utils/models"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -15,15 +17,18 @@ type AppointmentEntity = appointment_model.AppointmentEntity
 type IService interface {
 	Create(context.Context, *AppointmentEntity) error
 	ReadByUserID(context.Context, primitive.ObjectID) (*AppointmentEntity, error)
+	ReadAllByMonth(context.Context, internal_datetime.UTCTime) ([]AppointmentEntity, error)
 }
 
 type service struct {
 	repository *appointment_repository.Repository
+	clock      utils_models.Clock
 }
 
 // Constructor
-func New(coll *mongo.Collection) *service {
+func New(coll *mongo.Collection, clock utils_models.Clock) *service {
 	return &service{
 		repository: appointment_repository.New(coll),
+		clock:      clock,
 	}
 }

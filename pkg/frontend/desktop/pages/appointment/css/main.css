@@ -9,6 +9,10 @@
   background-color: red;
 }
 
+.date_picker__monthDay-appointed {
+  background-color: yellow;
+}
+
 #date_picker__weekDays {
   display: grid;
   grid-template-columns: repeat(7, 50px);
