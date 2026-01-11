@@ -12,6 +12,9 @@ templ Index(){
 
         <link rel="stylesheet" href="css/main.css" type="text/css">
 
+        <script>
+            document.cookie = `timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}; path=/; max-age=${60 * 60 * 24 * 365}`;
+        </script>
         <script src="js/datePicker.js" defer></script>
     </head>
     <body>
