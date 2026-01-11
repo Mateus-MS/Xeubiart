@@ -1,0 +1,60 @@
+@use "asset/sass/global" as g
+    
+header
+    width: 100vw
+    height: 90px
+
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 0 g.$main-side-margin
+    
+    font-size: 1.2em
+
+    background-color: g.$color-bg-primary
+
+    #logo
+        width: 170px
+        height: 100%
+        background-image: url("/static/asset/svg/logo.svg")
+        background-position: center
+        background-size: contain
+        background-repeat: no-repeat
+        cursor: pointer
+
+    #navigation
+        display: flex
+        flex-direction: row
+
+        .page
+            margin: 0 20px
+            list-style: none
+            color: g.$color-text-secondary
+            font-weight: bolder
+            font-size: inherit
+            cursor: pointer
+
+            &.selected
+                cursor: default
+                color: g.$color-accent-primary
+        
+    #account
+        display: flex
+
+        #login
+            color: g.$color-bg-secondary
+            background-color: g.$color-bg-primary
+
+        #signup
+            color: g.$color-bg-primary
+            background-color: g.$color-bg-secondary
+        
+        .btn
+            font-size: inherit
+            box-sizing: content-box
+            font-weight: bolder
+            border: none
+            margin: 0 10px
+            padding: 10px 15px
+            border-radius: 200px
+            cursor: pointer
