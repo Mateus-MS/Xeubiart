@@ -8,3 +8,9 @@ $color-accent-primary: #F4740F
 $color-accent-secondary: #5AAD1F
 
 $main-side-margin: 4vw
+
+@mixin hide-scrollBar
+    scrollbar-width: none
+
+    &::-webkit-scrollbar
+        display: none

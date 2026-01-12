@@ -30,6 +30,7 @@ templ Index(){
             document.cookie = `timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}; path=/; max-age=${60 * 60 * 24 * 365}`;
         </script>
         <script src="js/datePicker.js" defer></script>
+        <script src="js/customSelect.js" defer></script>
     </head>
     <body>
         @desktop_frags_header.Header()
@@ -89,14 +90,17 @@ templ calendar() {
         <button onclick="updateSchedule()">update</button>
 
         <div id="confirmation">
-            <select id="time" name="time">
-                // TODO: receive this pre-calculated
-                {{ start := time.Date(0, 0, 0, 9, 0, 0, 0, time.UTC) }}
-                for i := 9; i < 28; i++ {
-                    <option>{start.Format("15:04")}</option>
-                    {{ start = start.Add(time.Minute*30) }}
-                }
-            </select>
+            <div id="custom-select">
+                <ul class="hidden">
+                    // TODO: receive this pre-calculated
+                    {{ start := time.Date(0, 0, 0, 9, 0, 0, 0, time.UTC) }}
+                    for i := 9; i < 28; i++ {
+                        <li>{start.Format("15:04")}</li>
+                        {{ start = start.Add(time.Minute*30) }}
+                    }
+                </ul>
+                <div class="selected">09:00</div>
+            </div>
             <button>Book now</button>
         </div>
     </div>
