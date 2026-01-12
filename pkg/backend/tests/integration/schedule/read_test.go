@@ -19,7 +19,7 @@ func TestScheduleRead_Success(t *testing.T) {
 
 	integration_fixtures.InsertAppointment(t, h.Ctx, h.DB.Database, date)
 
-	result, err := h.Services.Schedule.ReadByMonth(h.Ctx, date.ToUTCTime())
+	result, err := h.Services.Schedule.ReadByOffsetMonth(h.Ctx, 0)
 	assert.NoError(t, err)
-	assert.Equal(t, 1, len(result.Schedule.Appointments))
+	assert.Equal(t, 1, len(result.Schedule.Days[15]))
 }

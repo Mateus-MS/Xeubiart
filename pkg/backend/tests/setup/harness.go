@@ -49,7 +49,7 @@ func NewHarness(t *testing.T) *Harness {
 
 	appointment := appointment_service.New(testDB.Database.Collection("appointment"), mockClock)
 	booking := booking_service.New(testDB.Database.Collection("booking"))
-	schedule := schedule_service.New(appointment, booking)
+	schedule := schedule_service.New(appointment, booking, mockClock)
 
 	services := services{
 		Appointment: appointment,

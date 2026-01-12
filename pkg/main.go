@@ -23,7 +23,7 @@ func main() {
 	appClock := utils_models.AppClock{}
 
 	appointmentService := appointment_service.New(db.Database("cluster").Collection("appointment"), appClock)
-	scheduelService := schedule_service.New(appointmentService, nil)
+	scheduelService := schedule_service.New(appointmentService, nil, appClock)
 
 	services := app.Services{
 		Appointment: appointmentService,

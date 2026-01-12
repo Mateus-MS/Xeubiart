@@ -19,10 +19,6 @@ type AppointmentEntity struct {
 	Date   internal_datetime.UTCTime
 }
 
-type AppointmentDTO struct {
-	Date internal_datetime.UTCTime
-}
-
 // It expects a local date to be converted to UTC
 func NewEntity(userID primitive.ObjectID, localDate *internal_datetime.LocalTime) (*AppointmentEntity, error) {
 	// Converts the received local time to UTC
@@ -33,10 +29,4 @@ func NewEntity(userID primitive.ObjectID, localDate *internal_datetime.LocalTime
 		UserID: userID,
 		Date:   utcTime,
 	}, nil
-}
-
-func (a *AppointmentEntity) ToDTO() *AppointmentDTO {
-	return &AppointmentDTO{
-		Date: a.Date,
-	}
 }

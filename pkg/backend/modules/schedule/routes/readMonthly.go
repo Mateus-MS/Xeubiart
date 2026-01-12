@@ -14,22 +14,13 @@ import (
 
 func ScheduleReadMonthlyRoute(scheduleService schedule_service.IService) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// Read the Year param
-		yearStr := c.Param("year")
-		if yearStr == "" {
-			c.AbortWithError(http.StatusBadRequest, errors.New("invalid year"))
-			return
-		}
-		yearInt, err := strconv.Atoi(yearStr)
-
 		// Get the path param as a time.Month
-		monthStr := c.Param("month")
-		monthInt, err := strconv.Atoi(monthStr)
-		if err != nil || monthInt < 1 || monthInt > 12 {
+		monthOffsetStr := c.Param("month")
+		monthOffsetInt, err := strconv.Atoi(monthOffsetStr)
+		if err != nil || monthOffsetInt < 0 || monthOffsetInt > 12 {
 			c.AbortWithError(http.StatusBadRequest, errors.New("invalid month"))
 			return
 		}
-		month := time.Month(monthInt)
 
 		// Get the timezone cookie
 		loc, err := routes_utils.LoadLocationFromCookie(c)
@@ -39,14 +30,21 @@ func ScheduleReadMonthlyRoute(scheduleService schedule_service.IService) gin.Han
 		}
 
 		// Create the local time with received data
-		localTime, err := internal_datetime.NewLocalFromTime(time.Date(yearInt, month, 1, 0, 0, 0, 0, loc))
+		localTime, err := internal_datetime.NewLocalFromTime(time.Now().In(loc).AddDate(0, monthOffsetInt, 0))
 		if err != nil {
 			c.AbortWithError(http.StatusBadRequest, err)
 			return
 		}
 
-		// Try to read from DB converting the local time to UTC
-		schedule, err := scheduleService.ReadByMonth(c.Request.Context(), localTime.ToUTCTime())
+		// Converts localtime to UTC
+		utcTime, err := internal_datetime.NewUTCTimeFromTime(localTime.Time.UTC())
+		if err != nil {
+			c.AbortWithError(http.StatusBadRequest, err)
+			return
+		}
+
+		// Try to read from DB
+		schedule, err := scheduleService.ReadByOffsetMonth(c.Request.Context(), int(utcTime.Month()))
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return

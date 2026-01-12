@@ -9,8 +9,7 @@ import (
 
 // Represents all month's callendar
 type Schedule struct {
-	Appointments []appointment_model.AppointmentDTO `json:"appointments"`
-	Bookings     []booking_model.BookEntity         `json:"bookings"`
+	Days map[int][]time.Time `json:"day"`
 }
 
 type date struct {
@@ -18,6 +17,7 @@ type date struct {
 	Month        time.Month   `json:"month"`
 	FirstWeekday time.Weekday `json:"firstWeekday"`
 	DaysInMonth  int          `json:"daysInMonth"`
+	Today        int          `json:"today"`
 }
 
 type MonthScheduleDTO struct {
@@ -25,17 +25,25 @@ type MonthScheduleDTO struct {
 	Schedule Schedule `json:"schedule"`
 }
 
-func NewMonthScheduleDTO(appointments []appointment_model.AppointmentDTO, bookings []booking_model.BookEntity, year int, month time.Month) *MonthScheduleDTO {
+func NewMonthScheduleDTO(appointments []appointment_model.AppointmentEntity, bookings []booking_model.BookEntity, year int, month time.Month, today int) *MonthScheduleDTO {
+	schedule := Schedule{}
+	schedule.Days = make(map[int][]time.Time)
+
+	for _, appointment := range appointments {
+		day := appointment.Date.Day()
+		schedule.Days[day] = append(schedule.Days[day], appointment.Date.Time)
+	}
+
+	// TODO: same for bookings
+
 	return &MonthScheduleDTO{
 		Date: date{
 			Year:         year,
 			Month:        month,
+			Today:        today,
 			FirstWeekday: time.Date(year, month, 1, 0, 0, 0, 0, time.UTC).Weekday(),
 			DaysInMonth:  time.Date(year, month, 1, 0, 0, 0, 0, time.UTC).AddDate(0, 1, -1).Day(),
 		},
-		Schedule: Schedule{
-			Appointments: appointments,
-			Bookings:     bookings,
-		},
+		Schedule: schedule,
 	}
 }
