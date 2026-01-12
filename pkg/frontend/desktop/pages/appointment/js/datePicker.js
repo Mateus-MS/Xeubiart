@@ -1,4 +1,4 @@
-var monthDaysContainer = document.getElementById("date_picker__montDays__container")
+var monthDaysContainer = document.getElementById("monthDays")
 
 async function updateSchedule(){
     let data = await requestScheduleData(2026, 1)
@@ -36,7 +36,7 @@ async function loadAppointments(appointments, firstWeekDay){
         let date = appointments[i].Date.split("T")[0]
         let [year, month, day] = date.split("-").map(Number)
 
-        monthDaysContainer.querySelector(`[data-day="${day}"]`).classList.add("date_picker__monthDay-appointed")
+        monthDaysContainer.querySelector(`[data-day="${day}"]`).classList.add("appointed")
     }
 }
 

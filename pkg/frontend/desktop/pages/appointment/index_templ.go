@@ -10,6 +10,7 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import (
 	desktop_frags_header "github.com/Mateus-MS/Xeubiart.git/frontend/desktop/components/header"
+	"time"
 )
 
 func Index() templ.Component {
@@ -33,7 +34,7 @@ func Index() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Document</title><base href=\"static/desktop/pages/appointment/\"><link rel=\"stylesheet\" href=\"../../../asset/css/main.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"../../components/header/css/header.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/main.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/calendar.css\" type=\"text/css\"><script>\r\n            document.cookie = `timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}; path=/; max-age=${60 * 60 * 24 * 365}`;\r\n        </script><script src=\"js/datePicker.js\" defer></script></head><body>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Document</title><base href=\"static/desktop/pages/appointment/\"><link rel=\"stylesheet\" href=\"../../../asset/css/main.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"../../components/header/css/header.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/main.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/faq.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/calendar.css\" type=\"text/css\"><script>\r\n            document.cookie = `timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}; path=/; max-age=${60 * 60 * 24 * 365}`;\r\n        </script><script src=\"js/datePicker.js\" defer></script></head><body>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -111,20 +112,20 @@ func calendar() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div id=\"calendar\"><div id=\"date_picker__container\"><div id=\"date_picker__weekDays\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div id=\"calendar\"><div id=\"controller\"><button id=\"prev\" class=\"btn icon\">&#xE801;</button> <span id=\"date\">January 2026</span> <button id=\"next\" class=\"btn icon\">&#xE802;</button></div><div id=\"container\"><div class=\"holder\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		weekDays := []string{"D", "S", "T", "Q", "Q", "S", "S"}
+		weekDays := []string{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}
 		for _, letter := range weekDays {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<div class=\"date_picker__weekDay\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<div class=\"cell weekDay\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(letter)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `frontend/desktop/pages/appointment/index.templ`, Line: 68, Col: 61}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `frontend/desktop/pages/appointment/index.templ`, Line: 76, Col: 53}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
@@ -135,19 +136,44 @@ func calendar() templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div><div id=\"date_picker__montDays__container\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div><div id=\"monthDays\" class=\"holder\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for i := 0; i < 6; i++ {
 			for j := 0; j < 7; j++ {
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"date_picker__monthDay\"></div>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"cell\"></div>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div></div><button onclick=\"updateSchedule()\">update</button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div></div><button onclick=\"updateSchedule()\">update</button><div id=\"confirmation\"><select id=\"time\" name=\"time\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		start := time.Date(0, 0, 0, 9, 0, 0, 0, time.UTC)
+		for i := 9; i < 28; i++ {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<option>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			var templ_7745c5c3_Var5 string
+			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(start.Format("15:04"))
+			if templ_7745c5c3_Err != nil {
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `frontend/desktop/pages/appointment/index.templ`, Line: 96, Col: 50}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</option>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			start = start.Add(time.Minute * 30)
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</select> <button>Book now</button></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

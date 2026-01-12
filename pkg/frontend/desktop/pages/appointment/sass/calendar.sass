@@ -1,22 +1,75 @@
-$gridSize: 50px
-    
-#date_picker__montDays__container
-    display: grid
-    grid-template-columns: repeat(7, $gridSize)
-    
-.date_picker__monthDay
-    width: $gridSize
-    height: $gridSize
-    background-color: red
+@use "asset/sass/global" as g
 
-.date_picker__monthDay-appointed
-    background-color: yellow
+#calendar
+    width: 50%
+    height: fit-content
+    display: flex
+    flex-direction: column
+    align-items: center
 
-#date_picker__weekDays
-    display: grid
-    grid-template-columns: repeat(7, $gridSize)
+    #controller
+        margin-bottom: 2em
+        #date
+            color: g.$color-accent-primary
+            font-size: 2em
+            font-weight: bolder
+            margin: 0 30px
 
-.date_picker__weekDay
-    width: $gridSize
-    height: $gridSize
-    background-color: green
+        .btn
+            font-weight: bolder
+            background-color: transparent
+            color: g.$color-accent-primary
+            font-size: 2em
+            border: none
+            cursor: pointer
+
+    #container
+        $gridSize: 70px
+
+        .holder
+            display: grid
+            grid-template-columns: repeat(7, $gridSize)
+
+        .cell
+            width: $gridSize
+            height: $gridSize
+            
+            display: grid
+            place-items: center
+
+            font-weight: bolder
+            font-size: 1.2em
+
+        .weekDay
+            color: g.$color-text-secondary
+
+        .appointed
+            border-radius: 100px
+            border: 2px solid g.$color-accent-primary
+
+    #confirmation
+        select
+            font-size: 2em
+            border: none
+            color: g.$color-accent-primary
+            padding: 20px 30px
+            border-bottom: 3px solid g.$color-accent-primary
+            font-weight: bolder
+            cursor: pointer
+            margin: 0 10px
+            width: 200px
+            text-align: center
+            appearance: none
+            outline: none
+
+        button
+            width: 250px
+            font-size: 2em
+            color: g.$color-bg-primary
+            background-color: g.$color-accent-secondary
+            border-radius: 20px
+            padding: 20px 30px
+            margin: 0 10px
+            border: none
+            font-weight: bolder
+            cursor: pointer

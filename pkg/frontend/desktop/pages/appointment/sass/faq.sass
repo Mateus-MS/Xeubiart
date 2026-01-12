@@ -1,0 +1,61 @@
+@use "asset/sass/global" as g
+
+#FAQ
+    width: 35%
+    height: fit-content
+
+    .question
+        $dash-width: 3px
+        $title-size: 30px
+
+        box-sizing: border-box
+        padding-bottom: 2em
+        padding-left: 10%
+        margin-left: 10%
+        position: relative
+        border-left: $dash-width dashed g.$color-bg-primary
+
+        h3 
+            font-size: $title-size
+            font-weight: bolder
+            color: g.$color-bg-secondary
+        
+        p
+            font-size: 1.4em
+            color: g.$color-accent-primary
+            margin-top: 1em
+            margin-left: 1em
+            font-family: secondary
+
+        &::after
+            $size: 70px
+
+            // Positionate the number into center
+            display: grid
+            place-items: center
+
+            content: attr(data-label)
+            
+            // Align the balloon
+            width: $size
+            height: $size
+            position: absolute
+            left: 0
+            top: 0
+            transform: translate(
+                calc($size / -2 - $dash-width * 1.5), 
+                calc($size / -2 + $title-size / 2)
+            )
+
+            // Style the balloon
+            background-color: g.$color-bg-primary
+            border-radius: 1000px
+            border: $dash-width solid g.$color-accent-primary
+
+            // Style the text inside the balloon
+            font-weight: bolder
+            font-size: 2.5em
+            color: g.$color-accent-primary
+
+        &.left_dashed
+            border-left: $dash-width dashed g.$color-accent-primary
