@@ -29,8 +29,8 @@ templ Index(){
         <script>
             document.cookie = `timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}; path=/; max-age=${60 * 60 * 24 * 365}`;
         </script>
-        <script src="js/datePicker.js" defer></script>
-        <script src="js/customSelect.js" defer></script>
+
+        <script src="js/calendar.js" defer></script>
     </head>
     <body>
         @desktop_frags_header.Header()
@@ -48,15 +48,15 @@ templ faq() {
     <div id="FAQ">
         <div class="question left_dashed" data-label="1">
             <h3>Why do i need to appoint?</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti. Donec maximus nibh nec eleifend varius.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti</p>
         </div>
         <div class="question left_dashed" data-label="2">
             <h3>How to prepare?</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti. Donec maximus nibh nec eleifend varius.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti</p>
         </div>
         <div class="question" data-label="3">
             <h3>What to bring?</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti. Donec maximus nibh nec eleifend varius.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti</p>
         </div>
     </div>
 }
@@ -64,9 +64,9 @@ templ faq() {
 templ calendar() {
     <div id="calendar">
         <div id="controller">
-            <button id="prev" class="btn icon">&#xE801;</button>
-            <span id="date">January 2026</span>
-            <button id="next" class="btn icon">&#xE802;</button>
+            <button id="calendar-prev" class="btn icon hidden">&#xE801;</button>
+            <span id="date-display">January 2026</span>
+            <button id="calendar-next" class="btn icon">&#xE802;</button>
         </div>
 
         <div id="container">
@@ -87,11 +87,9 @@ templ calendar() {
             </div>
         </div>
 
-        <button onclick="updateSchedule()">update</button>
-
         <div id="confirmation">
             <div id="custom-select">
-                <ul class="hidden">
+                <ul id="custom-hours-holder" class="hidden">
                     // TODO: receive this pre-calculated
                     {{ start := time.Date(0, 0, 0, 9, 0, 0, 0, time.UTC) }}
                     for i := 9; i < 28; i++ {
@@ -99,9 +97,9 @@ templ calendar() {
                         {{ start = start.Add(time.Minute*30) }}
                     }
                 </ul>
-                <div class="selected">09:00</div>
+                <div id="custom-selected-display">09:00</div>
             </div>
-            <button>Book now</button>
+            <button id="make-appointment">Book now</button>
         </div>
     </div>
 }

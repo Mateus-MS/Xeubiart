@@ -25,8 +25,8 @@ func (r *Repository) ReadInRange(ctx context.Context, from, to time.Time) ([]App
 
 	filter := bson.M{
 		"date": bson.M{
-			"$gte": from,
-			"$lt":  to,
+			"$gt": from,
+			"$lt": to,
 		},
 	}
 

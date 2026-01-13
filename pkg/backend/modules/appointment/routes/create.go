@@ -41,6 +41,8 @@ func AppointmentRegisterRoute(appointmentService appointment_service.IService) g
 			return
 		}
 
+		println(lt.String())
+
 		// Create the appointment object
 		appointment, err := appointment_model.NewEntity(reqBody.UserID, lt)
 		if err != nil {

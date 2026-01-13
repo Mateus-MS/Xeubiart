@@ -9,7 +9,7 @@ import (
 
 // Represents all month's callendar
 type Schedule struct {
-	Days map[int][]time.Time `json:"day"`
+	Days map[int][]time.Time `json:"days"`
 }
 
 type date struct {

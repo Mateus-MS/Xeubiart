@@ -34,7 +34,7 @@ func Index() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Document</title><base href=\"static/desktop/pages/appointment/\"><link rel=\"stylesheet\" href=\"../../../asset/css/main.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"../../components/header/css/header.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/main.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/faq.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/calendar.css\" type=\"text/css\"><script>\r\n            document.cookie = `timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}; path=/; max-age=${60 * 60 * 24 * 365}`;\r\n        </script><script src=\"js/datePicker.js\" defer></script><script src=\"js/customSelect.js\" defer></script></head><body>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Document</title><base href=\"static/desktop/pages/appointment/\"><link rel=\"stylesheet\" href=\"../../../asset/css/main.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"../../components/header/css/header.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/main.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/faq.css\" type=\"text/css\"><link rel=\"stylesheet\" href=\"css/calendar.css\" type=\"text/css\"><script>\r\n            document.cookie = `timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}; path=/; max-age=${60 * 60 * 24 * 365}`;\r\n        </script><script src=\"js/calendar.js\" defer></script></head><body>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -83,7 +83,7 @@ func faq() templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div id=\"FAQ\"><div class=\"question left_dashed\" data-label=\"1\"><h3>Why do i need to appoint?</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti. Donec maximus nibh nec eleifend varius.</p></div><div class=\"question left_dashed\" data-label=\"2\"><h3>How to prepare?</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti. Donec maximus nibh nec eleifend varius.</p></div><div class=\"question\" data-label=\"3\"><h3>What to bring?</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti. Donec maximus nibh nec eleifend varius.</p></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div id=\"FAQ\"><div class=\"question left_dashed\" data-label=\"1\"><h3>Why do i need to appoint?</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti</p></div><div class=\"question left_dashed\" data-label=\"2\"><h3>How to prepare?</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti</p></div><div class=\"question\" data-label=\"3\"><h3>What to bring?</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pretium magna ut ex convallis, at sollicitudin eros vestibulum. Suspendisse potenti</p></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -112,7 +112,7 @@ func calendar() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div id=\"calendar\"><div id=\"controller\"><button id=\"prev\" class=\"btn icon\">&#xE801;</button> <span id=\"date\">January 2026</span> <button id=\"next\" class=\"btn icon\">&#xE802;</button></div><div id=\"container\"><div class=\"holder\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div id=\"calendar\"><div id=\"controller\"><button id=\"calendar-prev\" class=\"btn icon hidden\">&#xE801;</button> <span id=\"date-display\">January 2026</span> <button id=\"calendar-next\" class=\"btn icon\">&#xE802;</button></div><div id=\"container\"><div class=\"holder\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -148,7 +148,7 @@ func calendar() templ.Component {
 				}
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div></div><button onclick=\"updateSchedule()\">update</button><div id=\"confirmation\"><div id=\"custom-select\"><ul class=\"hidden\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</div></div><div id=\"confirmation\"><div id=\"custom-select\"><ul id=\"custom-hours-holder\" class=\"hidden\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -161,7 +161,7 @@ func calendar() templ.Component {
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(start.Format("15:04"))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `frontend/desktop/pages/appointment/index.templ`, Line: 98, Col: 50}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `frontend/desktop/pages/appointment/index.templ`, Line: 96, Col: 50}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
@@ -173,7 +173,7 @@ func calendar() templ.Component {
 			}
 			start = start.Add(time.Minute * 30)
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</ul><div class=\"selected\">09:00</div></div><button>Book now</button></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</ul><div id=\"custom-selected-display\">09:00</div></div><button id=\"make-appointment\">Book now</button></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -3,6 +3,7 @@ package schedule_service
 import (
 	"context"
 
+	internal_datetime "github.com/Mateus-MS/Xeubiart.git/backend/internal/datetime"
 	appointment_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/appointment/service"
 	booking_service "github.com/Mateus-MS/Xeubiart.git/backend/modules/booking/service"
 	schedule_model "github.com/Mateus-MS/Xeubiart.git/backend/modules/schedule/model"
@@ -12,7 +13,7 @@ import (
 type MonthScheduleDTO = schedule_model.MonthScheduleDTO
 
 type IService interface {
-	ReadByOffsetMonth(context.Context, int) (*MonthScheduleDTO, error)
+	ReadByOffsetMonth(context.Context, *internal_datetime.LocalTime, int) (*MonthScheduleDTO, error)
 }
 
 type service struct {

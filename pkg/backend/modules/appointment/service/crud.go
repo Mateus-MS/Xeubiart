@@ -11,7 +11,7 @@ import (
 
 var (
 	ErrInvalidAppointmentDate  = errors.New("the given date is invalid")
-	ErrAppointmentTimeConflict = errors.New("another appointment exists within 3 hours of the requested time")
+	ErrAppointmentTimeConflict = errors.New("another appointment exists within 2 hours of the requested time")
 )
 
 func (s *service) Create(ctx context.Context, appointment *AppointmentEntity) error {
@@ -22,12 +22,13 @@ func (s *service) Create(ctx context.Context, appointment *AppointmentEntity) er
 		return ErrInvalidAppointmentDate
 	}
 
-	// An appointment must not exist within ±3 hours of another appointment
-	appointmentsInRange, err := s.repository.ReadInRange(ctx, appointment.Date.Add(time.Hour*-3), appointment.Date.Add(time.Hour*3))
+	// An appointment must not exist within ±2 hours of another appointment
+	appointmentsInRange, err := s.repository.ReadInRange(ctx, appointment.Date.Add(time.Hour*-2), appointment.Date.Add(time.Hour*2))
 	if err != nil {
 		return err
 	}
 	if len(appointmentsInRange) > 0 {
+		println("in db" + appointmentsInRange[0].Date.String())
 		return ErrAppointmentTimeConflict
 	}
 

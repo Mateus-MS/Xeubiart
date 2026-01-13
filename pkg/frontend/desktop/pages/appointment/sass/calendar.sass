@@ -9,7 +9,7 @@
     cursor: pointer
 
 #calendar
-    width: 50%
+    width: fit-content
     height: fit-content
     display: flex
     flex-direction: column
@@ -17,7 +17,8 @@
 
     #controller
         margin-bottom: 2em
-        #date
+        #date-display
+            width: 60%
             color: g.$color-accent-primary
             font-size: 2em
             font-weight: bolder
@@ -30,6 +31,12 @@
             font-size: 2em
             border: none
             cursor: pointer
+
+        .hidden
+            opacity: 0
+            pointer-events: none
+            cursor: default
+            user-select: none
 
     #container
         $gridSize: 70px
@@ -48,8 +55,27 @@
             font-weight: bolder
             font-size: 1.2em
 
+            border-radius: 100%
+
+            border: 2px solid g.$color-bg-primary
+            transition: border .3s ease
+
+        .available
+            cursor: pointer
+
+            &:hover, &.selected
+                border: 2px solid g.$color-bg-secondary
+
         .weekDay
             color: g.$color-text-secondary
+            cursor: default
+
+            &:hover
+                border: 2px solid g.$color-bg-primary
+
+        .pastDay
+            color: g.$color-text-secondary
+            cursor: default
 
         .appointed
             border-radius: 100px
@@ -122,11 +148,14 @@
                 background-color: g.$color-accent-secondary
                 color: g.$color-bg-primary
 
+            &.hidden
+                display: none
+
         &.hidden
             max-height: 0px
             
 
-    .selected
+    #custom-selected-display
         @include opt
         display: grid
         place-items: center

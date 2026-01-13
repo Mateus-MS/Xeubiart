@@ -30,21 +30,14 @@ func ScheduleReadMonthlyRoute(scheduleService schedule_service.IService) gin.Han
 		}
 
 		// Create the local time with received data
-		localTime, err := internal_datetime.NewLocalFromTime(time.Now().In(loc).AddDate(0, monthOffsetInt, 0))
-		if err != nil {
-			c.AbortWithError(http.StatusBadRequest, err)
-			return
-		}
-
-		// Converts localtime to UTC
-		utcTime, err := internal_datetime.NewUTCTimeFromTime(localTime.Time.UTC())
+		localTime, err := internal_datetime.NewLocalFromTime(time.Now().In(loc))
 		if err != nil {
 			c.AbortWithError(http.StatusBadRequest, err)
 			return
 		}
 
 		// Try to read from DB
-		schedule, err := scheduleService.ReadByOffsetMonth(c.Request.Context(), int(utcTime.Month()))
+		schedule, err := scheduleService.ReadByOffsetMonth(c.Request.Context(), localTime, monthOffsetInt)
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return

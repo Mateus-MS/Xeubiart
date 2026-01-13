@@ -13,23 +13,14 @@ var (
 )
 
 // From the actual time, offset the month by the received.
-func (s *service) ReadByOffsetMonth(ctx context.Context, offsetMonth int) (*MonthScheduleDTO, error) {
+func (s *service) ReadByOffsetMonth(ctx context.Context, localTime *internal_datetime.LocalTime, offsetMonth int) (*MonthScheduleDTO, error) {
 	dto := &schedule_model.MonthScheduleDTO{}
 
-	// Ensures only positive values
-	if offsetMonth < 0 {
-		return dto, ErrNegativeMonthOffset
-	}
-
-	// Get the actual server time
-	t := s.clock.Now()
-	utcTime, err := internal_datetime.NewUTCTimeFromTime(t)
+	// Converts localtime to UTC and add the offset to the query
+	utcTime, err := internal_datetime.NewUTCTimeFromTime(localTime.Time.UTC().AddDate(0, offsetMonth, 0))
 	if err != nil {
 		return dto, err
 	}
-
-	// Add the offset to the query
-	utcTime.AddDate(0, offsetMonth, 0)
 
 	// query
 	appointments, err := s.DepsServices.Appointment.ReadAllByMonth(ctx, *utcTime)
@@ -44,5 +35,11 @@ func (s *service) ReadByOffsetMonth(ctx context.Context, offsetMonth int) (*Mont
 
 	// TODO: The received month cannot be previous from the actual month, neighter year
 
-	return schedule_model.NewMonthScheduleDTO(appointments, nil, utcTime.Year(), utcTime.Month(), utcTime.Day()), nil
+	// Only send today if the month offset is 0
+	response := schedule_model.NewMonthScheduleDTO(appointments, nil, utcTime.Year(), utcTime.Month(), utcTime.Day())
+	if offsetMonth != 0 {
+		response.Date.Today = 0
+	}
+
+	return response, nil
 }
