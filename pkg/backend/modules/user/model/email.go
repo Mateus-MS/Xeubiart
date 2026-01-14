@@ -7,18 +7,17 @@ var (
 )
 
 type Email struct {
-	Address string `json:"address" bson:"address"`
+	address string
 }
 
-func (e *Email) IsValid() bool {
-	// Simple test validation
-	return e.Address != ""
+func (e Email) GetAddress() string {
+	return e.address
 }
 
-func NewEmail(address string) (*Email, error) {
-	email := &Email{Address: address}
-	if !email.IsValid() {
-		return nil, ErrInvalidEmail
+func NewEmail(address string) (Email, error) {
+	if address == "" {
+		return Email{}, ErrInvalidEmail
 	}
-	return email, nil
+
+	return Email{address: address}, nil
 }

@@ -7,18 +7,16 @@ var (
 )
 
 type Phone struct {
-	Number string `json:"number" bson:"number"`
+	number string
 }
 
-func (p *Phone) IsValid() bool {
-	// Simple test validation
-	return p.Number != ""
+func (p Phone) GetNumber() string {
+	return p.number
 }
 
-func NewPhone(number string) (*Phone, error) {
-	phone := &Phone{Number: number}
-	if !phone.IsValid() {
-		return nil, ErrInvalidPhone
+func NewPhone(number string) (Phone, error) {
+	if number == "" {
+		return Phone{}, ErrInvalidPhone
 	}
-	return phone, nil
+	return Phone{number: number}, nil
 }
