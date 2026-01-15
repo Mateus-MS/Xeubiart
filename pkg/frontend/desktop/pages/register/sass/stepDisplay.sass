@@ -1,0 +1,79 @@
+@use "asset/sass/global" as g
+    
+#step-display
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    place-items: center
+    margin-bottom: 2rem
+    position: relative
+
+    &::before
+        content: ""
+        position: absolute
+
+        top: 1.5rem
+        left: 13%
+        right: 13%
+
+        border-top: 2px dashed g.$color-bg-secondary
+        z-index: 0
+
+    .step
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 3rem
+        z-index: 1
+
+        // &.active
+        //     .number
+        //         color: g.$color-bg-primary
+                
+        //         &::after
+        //             background-color: g.$color-bg-secondary
+
+        .number
+            position: relative
+
+            width: 100%
+            aspect-ratio: 1/1
+
+            display: grid
+            place-items: center
+
+            color: g.$color-bg-secondary
+            font-weight: bolder
+
+            &::before
+                content: ""
+                display: block
+
+                position: absolute
+
+                width: 100%
+                aspect-ratio: 1/1
+                
+                z-index: -2
+                background-color: g.$color-bg-primary
+
+            &::after
+                content: ""
+                display: block
+
+                position: absolute
+
+                width: 50%
+                aspect-ratio: 1/1
+                z-index: -1
+
+                border: 3px solid g.$color-bg-secondary
+                border-radius: 50%
+                
+        .label
+            color: g.$color-bg-secondary
+            font-weight: bolder
+            
+            width: fit-content
+            display: block
+            text-align: center
+                

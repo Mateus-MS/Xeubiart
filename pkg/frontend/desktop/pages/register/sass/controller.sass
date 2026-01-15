@@ -1,0 +1,57 @@
+@use "asset/sass/global" as g
+    
+#register_form
+    &[data-step="1"]
+        #step-inputs
+            #step-1
+                display: flex
+
+        #step-display
+            .step#step-display-1
+                .number
+                    color: g.$color-bg-primary
+                    
+                    &::after
+                        background-color: g.$color-bg-secondary
+
+        #optionally
+            #complete-registration-later
+                display: none
+
+        #prev-step
+            opacity: 0
+            pointer-events: none
+
+    &[data-step="2"]
+        #step-inputs
+            #step-2
+                display: flex
+
+        #optionally
+            #other-register-methods
+                display: none
+
+        #step-display
+            .step#step-display-2
+                .number
+                    color: g.$color-bg-primary
+                    
+                    &::after
+                        background-color: g.$color-bg-secondary
+
+    &[data-step="3"]
+        #step-inputs
+            #step-3
+                display: flex
+
+        #optionally
+            #other-register-methods
+                display: none
+
+        #step-display
+            .step#step-display-3
+                .number
+                    color: g.$color-bg-primary
+                    
+                    &::after
+                        background-color: g.$color-bg-secondary

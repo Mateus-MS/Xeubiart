@@ -16,6 +16,8 @@ templ Index(){
         // Page styles
         <link rel="stylesheet" href="css/main.css" type="text/css">
         <link rel="stylesheet" href="css/registerForm.css" type="text/css">
+        <link rel="stylesheet" href="css/stepDisplay.css" type="text/css">
+        <link rel="stylesheet" href="css/controller.css" type="text/css">
     </head>
     <body>
         <section id="main_section">
@@ -28,9 +30,21 @@ templ Index(){
 }
 
 templ RegisterForm(){
-    <div id="register_form" data-step="3">
-    
-        <div id="step-display"></div>
+    <div id="register_form" data-step="1">
+        <div id="step-display">
+            <div class="step" id="step-display-1">
+                <div class="number">1</div>
+                <span class="label">Basic informations</span>
+            </div>
+            <div class="step" id="step-display-2">
+                <div class="number">2</div>
+                <span class="label">Contact informations</span>
+            </div>
+            <div class="step" id="step-display-3">
+                <div class="number">3</div>
+                <span class="label">Safety informations</span>
+            </div>
+        </div>
 
         <div id="step-inputs">
         
