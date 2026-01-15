@@ -1,0 +1,199 @@
+@use "asset/sass/global" as g
+
+@mixin defaultBorderRadius
+    border-radius: 12px
+
+@mixin defaultButtonStyle
+    @include defaultBorderRadius
+
+    font-size: 1.1rem
+    background-color: transparent
+    font-weight: bolder
+    padding: 1rem 1.5rem
+    text-align: center
+    cursor: pointer
+    
+#register_form
+    width: 40%
+    height: 100%
+    display: flex
+    flex-direction: column
+    padding: 3rem 0
+
+    &[data-step="1"]
+        #step-inputs
+            #step-1
+                display: flex
+
+        #optionally
+            #complete-registration-later
+                display: none
+
+        #prev-step
+            opacity: 0
+            pointer-events: none
+
+    &[data-step="2"]
+        #step-inputs
+            #step-2
+                display: flex
+
+        #optionally
+            #other-register-methods
+                display: none
+
+    &[data-step="3"]
+        #step-inputs
+            #step-3
+                display: flex
+
+        #optionally
+            #other-register-methods
+                display: none
+
+    #step-inputs
+        display: flex
+        flex-direction: column
+
+        width: 100%
+        flex-grow: 1
+
+    .steps-holder
+        width: 100%
+        display: none
+        flex-wrap: wrap
+        justify-content: space-between
+
+    .custom-input
+        display: inline-block
+        margin-bottom: 1.5rem
+
+        span
+            font-size: 1.7rem
+            display: block
+            color: g.$color-accent-primary
+            margin-bottom: .7rem
+            font-weight: bolder
+
+        textarea
+            display: flex
+            width: 100%
+            // TODO: it's not working as intented
+            flex-grow: 1
+            resize: none
+
+        fieldset
+            border: none
+
+            label 
+                display: flex
+                align-items: center
+                margin-bottom: 1rem
+
+                &:last-child 
+                    margin-bottom: 0
+
+                > input
+                    width: 20px
+                    aspect-ratio:  1/1
+                    margin-right: 1rem
+                    accent-color: g.$color-accent-primary
+
+        input, textarea
+            @include defaultBorderRadius
+
+            font-size: 1.3rem
+            width: 100%
+            padding: 1rem 1rem
+            color: g.$non-focus-element
+            border: 2px solid g.$color-accent-primary
+            outline: none
+
+    #next-step
+        color: g.$color-bg-primary
+        background-color: g.$color-accent-secondary
+        border-color: g.$color-accent-secondary
+
+        &:disabled
+            cursor: not-allowed
+            background-color: g.$color-bg-primary
+            color: g.$non-focus-element
+
+    #prev-step
+        padding: 1rem 1rem
+        border: none
+        color: g.$non-focus-element
+
+    .btn
+        width: 100%
+        border: 3px solid g.$non-focus-element
+        font-size: 1.2rem
+        font-weight: bolder
+        padding: 1rem 1.5rem
+        border-radius: 12px
+        text-align: center
+        cursor: pointer
+        background-color: transparent
+
+    #optionally
+        width: 100%
+
+        #other-register-methods
+            display: flex
+            flex-wrap: wrap
+            justify-content: space-between
+            gap: 1rem
+
+            span
+                color: g.$non-focus-element
+                font-weight: bold
+                width: 100%
+                text-align: center
+
+            button
+                @include defaultButtonStyle
+
+                display: flex
+                flex-direction: row
+                align-items: center
+                justify-content: space-evenly
+                border: 3px solid g.$non-focus-element
+                width: 47%
+                color: g.$non-focus-element
+                font-weight: bolder
+
+                img
+                    width: 30px
+                    aspect-ratio: 1/1
+                    display: inline
+
+                span
+                    width: fit-content
+
+        #complete-registration-later
+            width: 100%
+
+            button
+                @include defaultButtonStyle
+
+                border: 3px solid g.$color-accent-secondary
+                width: 100%
+                color: g.$non-focus-element
+                margin-bottom: 1rem
+
+            p
+                text-align: right
+                color: g.$color-accent-primary
+                font-family: secondary
+                font-weight: bold
+
+    #login-redirection
+        margin-top: 2rem
+        display: block
+        width: 100%
+        text-align: center
+        color: g.$non-focus-element
+
+        a
+            font-weight: bolder
+            text-decoration: none

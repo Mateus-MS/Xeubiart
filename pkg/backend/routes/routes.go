@@ -14,6 +14,7 @@ func InitRoutes(app *app.App) {
 	// Pages
 	app.Router.GET("/", routes_pages.LandingPageRoute())
 	app.Router.GET("/appointment", routes_pages.AppointmentPageRoute())
+	app.Router.GET("/register", routes_pages.RegisterPageRoute())
 
 	// Api
 	appointment_routes.RegisterAppointmentRoutes(app)

@@ -1,0 +1,28 @@
+@use "asset/sass/global" as g
+    
+body
+    height: 100vh
+    display: flex
+    flex-direction: column
+
+#main_section
+    width: 100vw
+    flex: 1 1 auto
+
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+    padding: 0 g.$main-side-margin
+
+    #side_word
+        color: g.$color-bg-secondary
+        writing-mode: sideways-lr
+        font-size: 600%
+        text-align: center
+        margin: 0 2%
+
+    #image_container
+        width: 40%
+        height: 100%
+        background-color: red
