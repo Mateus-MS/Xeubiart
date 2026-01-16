@@ -1,5 +1,10 @@
 package desktop_page_register
 
+import (
+    desktop_components_inputs "github.com/Mateus-MS/Xeubiart.git/frontend/desktop/components/inputs/defaultInput"
+    desktop_components "github.com/Mateus-MS/Xeubiart.git/frontend/desktop/components/loginOptions"
+)
+
 templ Index(){
     <!DOCTYPE html>
     <html lang="en">
@@ -57,47 +62,68 @@ templ RegisterForm(){
         
             // Step 1
             <div class="steps-holder" id="step-1">
-                <div class="custom-input" style="width: 100%;">
-                    <span>Full name</span>
-                    <input type="text" placeholder="Type your full name">
-                </div>
+                @desktop_components_inputs.DefaultInput(
+                    "100%", 
+                    "Full name", 
+                    []desktop_components_inputs.InputModel{
+                        {Type: "text", Placeholder: "Type your full name"},
+                    },
+                )
 
-                <div class="custom-input" style="width: 100%;">
-                    <span>Password</span>
-                    <input type="password" placeholder="Type your password" style="margin-bottom: 1.5rem;">
-                    <input type="password" placeholder="Confirm your password">
-                </div>
+                @desktop_components_inputs.DefaultInput(
+                    "100%", 
+                    "Password", 
+                    []desktop_components_inputs.InputModel{
+                        {Type: "password", Placeholder: "Type your password"},
+                        {Type: "password", Placeholder: "Confirm your password"},
+                    },
+                )
             </div>
 
             // Step 2
             <div class="steps-holder" id="step-2">
-                <div class="custom-input" style="width: 100%;">
-                    <span>E-mail</span>
-                    <input type="email" placeholder="Type your E-mail">
-                </div>
+                @desktop_components_inputs.DefaultInput(
+                    "100%", 
+                    "E-mail", 
+                    []desktop_components_inputs.InputModel{
+                        {Type: "email", Placeholder: "Type your E-mail"},
+                    },
+                )
 
-                <div class="custom-input" style="width: 100%;">
-                    <span>Phone</span>
-                    <input type="text" placeholder="Type your phone number">
-                </div>
+                @desktop_components_inputs.DefaultInput(
+                    "100%", 
+                    "Phone", 
+                    []desktop_components_inputs.InputModel{
+                        {Type: "text", Placeholder: "Type your phone number"},
+                    },
+                )
 
-                <div class="custom-input" style="width: 40%;">
-                    <span>Age</span>
-                    <input type="number" placeholder="Type your age">
-                </div>
+                @desktop_components_inputs.DefaultInput(
+                    "40%", 
+                    "Age", 
+                    []desktop_components_inputs.InputModel{
+                        {Type: "number", Placeholder: "Type your age"},
+                    },
+                )
 
-                <div class="custom-input" style="width: 50%;">
-                    <span>Pronoum</span>
-                    <input type="text" placeholder="What's your pronoum">
-                </div>
+                @desktop_components_inputs.DefaultInput(
+                    "50%", 
+                    "Pronoum", 
+                    []desktop_components_inputs.InputModel{
+                        {Type: "text", Placeholder: "What's your pronoum"},
+                    },
+                )
             </div>
 
             // Step 3
             <div class="steps-holder" id="step-3">
-                <div class="custom-input" style="width: 100%;">
-                    <span>Emergency contact</span>
-                    <input type="text" placeholder="Type your emergency contact number">
-                </div>
+                @desktop_components_inputs.DefaultInput(
+                    "100%", 
+                    "Emergency contact", 
+                    []desktop_components_inputs.InputModel{
+                        {Type: "text", Placeholder: "Type your emergency contact number"},
+                    },
+                )
 
                 <div class="custom-input" style="width: 100%;">
                     <span>Allergies</span>
@@ -132,17 +158,7 @@ templ RegisterForm(){
         </div>
         
         <div id="optionally">
-            <div id="other-register-methods">
-                <span>Or singup with</span>
-                <button id="google-signup">
-                    <img src="../../../asset/svg/google_icon.svg"></img> 
-                    <span>Google singup</span>
-                </button>
-                <button id="facebook-signup">
-                    <img src="../../../asset/svg/facebook_icon.svg"></img> 
-                    <span>Facebook singup</span>
-                </button>
-            </div>
+            @desktop_components.LoginOptions()
 
             <div id="complete-registration-later">
                 <button>Complete profile later</button>

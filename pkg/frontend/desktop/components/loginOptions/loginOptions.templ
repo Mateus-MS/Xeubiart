@@ -1,0 +1,26 @@
+package desktop_components
+
+import (
+    "github.com/Mateus-MS/Xeubiart.git/frontend/templ/utils"
+)
+
+var loadCSS = templ.NewOnceHandle()
+
+templ LoginOptions(){
+    @loadCSS.Once(){
+        @templ.Raw(templ_utils.IncludeRawCSSFile("style.css"))
+    }
+
+    <div id="other-register-methods">
+        <span>Or singup with</span>
+        @option("facebook-signup", "../../../asset/svg/facebook_icon.svg", "Facebook signup")
+        @option("google-signup", "../../../asset/svg/google_icon.svg", "Google signup")
+    </div>
+}
+
+templ option(className, url, labelText string){
+    <button>
+        <img src={url}></img> 
+        <span>{labelText}</span>
+    </button>
+}

@@ -8,6 +8,11 @@ package desktop_page_register
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
+import (
+	desktop_components_inputs "github.com/Mateus-MS/Xeubiart.git/frontend/desktop/components/inputs/defaultInput"
+	desktop_components "github.com/Mateus-MS/Xeubiart.git/frontend/desktop/components/loginOptions"
+)
+
 func Index() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
@@ -66,7 +71,98 @@ func RegisterForm() templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div id=\"register_form\" data-step=\"1\"><div id=\"step-display\"><div class=\"step\" id=\"step-display-1\"><div class=\"number\">1</div><span class=\"label\">Basic informations</span></div><div class=\"step\" id=\"step-display-2\"><div class=\"number\">2</div><span class=\"label\">Contact informations</span></div><div class=\"step\" id=\"step-display-3\"><div class=\"number\">3</div><span class=\"label\">Safety informations</span></div></div><div id=\"step-inputs\"><div class=\"steps-holder\" id=\"step-1\"><div class=\"custom-input\" style=\"width: 100%;\"><span>Full name</span> <input type=\"text\" placeholder=\"Type your full name\"></div><div class=\"custom-input\" style=\"width: 100%;\"><span>Password</span> <input type=\"password\" placeholder=\"Type your password\" style=\"margin-bottom: 1.5rem;\"> <input type=\"password\" placeholder=\"Confirm your password\"></div></div><div class=\"steps-holder\" id=\"step-2\"><div class=\"custom-input\" style=\"width: 100%;\"><span>E-mail</span> <input type=\"email\" placeholder=\"Type your E-mail\"></div><div class=\"custom-input\" style=\"width: 100%;\"><span>Phone</span> <input type=\"text\" placeholder=\"Type your phone number\"></div><div class=\"custom-input\" style=\"width: 40%;\"><span>Age</span> <input type=\"number\" placeholder=\"Type your age\"></div><div class=\"custom-input\" style=\"width: 50%;\"><span>Pronoum</span> <input type=\"text\" placeholder=\"What's your pronoum\"></div></div><div class=\"steps-holder\" id=\"step-3\"><div class=\"custom-input\" style=\"width: 100%;\"><span>Emergency contact</span> <input type=\"text\" placeholder=\"Type your emergency contact number\"></div><div class=\"custom-input\" style=\"width: 100%;\"><span>Allergies</span><fieldset><label><input type=\"checkbox\" value=\"latex\"> Látex (Gloves, elastics, etc)</label> <label><input type=\"checkbox\" value=\"metals\"> Metals (nickel, chromium, cobalt, mercury, iron)</label> <label><input type=\"checkbox\" value=\"cleaning\"> Skin cleansing products (alcohol, antiseptic soaps, disinfectants)</label></fieldset></div><div class=\"custom-input\" style=\"width: 100%;\"><span>Additional information</span> <textarea placeholder=\"Any important thing i should be aware of\"></textarea></div></div></div><div class=\"step-controller\"><button id=\"next-step\" class=\"btn\" disabled>Next step</button> <button id=\"prev-step\" class=\"btn\">Previous step</button></div><div id=\"optionally\"><div id=\"other-register-methods\"><span>Or singup with</span> <button id=\"google-signup\"><img src=\"../../../asset/svg/google_icon.svg\"> <span>Google singup</span></button> <button id=\"facebook-signup\"><img src=\"../../../asset/svg/facebook_icon.svg\"> <span>Facebook singup</span></button></div><div id=\"complete-registration-later\"><button>Complete profile later</button><p>You can optionally answer these questions later to speed up your registration now.</p></div></div><span id=\"login-redirection\">Already have an account? <a href=\"/login\">Login</a></span></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div id=\"register_form\" data-step=\"1\"><div id=\"step-display\"><div class=\"step\" id=\"step-display-1\"><div class=\"number\">1</div><span class=\"label\">Basic informations</span></div><div class=\"step\" id=\"step-display-2\"><div class=\"number\">2</div><span class=\"label\">Contact informations</span></div><div class=\"step\" id=\"step-display-3\"><div class=\"number\">3</div><span class=\"label\">Safety informations</span></div></div><div id=\"step-inputs\"><div class=\"steps-holder\" id=\"step-1\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = desktop_components_inputs.DefaultInput(
+			"100%",
+			"Full name",
+			[]desktop_components_inputs.InputModel{
+				{Type: "text", Placeholder: "Type your full name"},
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = desktop_components_inputs.DefaultInput(
+			"100%",
+			"Password",
+			[]desktop_components_inputs.InputModel{
+				{Type: "password", Placeholder: "Type your password"},
+				{Type: "password", Placeholder: "Confirm your password"},
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div><div class=\"steps-holder\" id=\"step-2\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = desktop_components_inputs.DefaultInput(
+			"100%",
+			"E-mail",
+			[]desktop_components_inputs.InputModel{
+				{Type: "email", Placeholder: "Type your E-mail"},
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = desktop_components_inputs.DefaultInput(
+			"100%",
+			"Phone",
+			[]desktop_components_inputs.InputModel{
+				{Type: "text", Placeholder: "Type your phone number"},
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = desktop_components_inputs.DefaultInput(
+			"40%",
+			"Age",
+			[]desktop_components_inputs.InputModel{
+				{Type: "number", Placeholder: "Type your age"},
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = desktop_components_inputs.DefaultInput(
+			"50%",
+			"Pronoum",
+			[]desktop_components_inputs.InputModel{
+				{Type: "text", Placeholder: "What's your pronoum"},
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div><div class=\"steps-holder\" id=\"step-3\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = desktop_components_inputs.DefaultInput(
+			"100%",
+			"Emergency contact",
+			[]desktop_components_inputs.InputModel{
+				{Type: "text", Placeholder: "Type your emergency contact number"},
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<div class=\"custom-input\" style=\"width: 100%;\"><span>Allergies</span><fieldset><label><input type=\"checkbox\" value=\"latex\"> Látex (Gloves, elastics, etc)</label> <label><input type=\"checkbox\" value=\"metals\"> Metals (nickel, chromium, cobalt, mercury, iron)</label> <label><input type=\"checkbox\" value=\"cleaning\"> Skin cleansing products (alcohol, antiseptic soaps, disinfectants)</label></fieldset></div><div class=\"custom-input\" style=\"width: 100%;\"><span>Additional information</span> <textarea placeholder=\"Any important thing i should be aware of\"></textarea></div></div></div><div class=\"step-controller\"><button id=\"next-step\" class=\"btn\" disabled>Next step</button> <button id=\"prev-step\" class=\"btn\">Previous step</button></div><div id=\"optionally\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = desktop_components.LoginOptions().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div id=\"complete-registration-later\"><button>Complete profile later</button><p>You can optionally answer these questions later to speed up your registration now.</p></div></div><span id=\"login-redirection\">Already have an account? <a href=\"/login\">Login</a></span></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

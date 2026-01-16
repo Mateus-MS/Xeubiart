@@ -1,0 +1,25 @@
+package desktop_components_inputs
+
+import (
+    "github.com/Mateus-MS/Xeubiart.git/frontend/templ/utils"
+)
+
+var loadCSS = templ.NewOnceHandle()
+
+type InputModel struct {
+    Type string
+    Placeholder string
+}
+
+templ DefaultInput(inputWidth, label string, inputs []InputModel){
+    @loadCSS.Once(){
+        @templ.Raw(templ_utils.IncludeRawCSSFile("style.css"))
+    }
+
+    <div class="custom-input" style={"width: " + inputWidth + ";"}>
+        <span>{label}</span>
+        for _, input := range inputs {
+            <input type={input.Type} placeholder={input.Placeholder}>
+        } 
+    </div>
+}

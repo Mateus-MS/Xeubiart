@@ -1,0 +1,39 @@
+@use "asset/sass/global" as g
+    
+#other-register-methods
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    gap: 1rem
+
+    span
+        color: g.$non-focus-element
+        font-weight: bold
+        width: 100%
+        text-align: center
+
+    button
+        font-size: 1.1rem
+        background-color: transparent
+        font-weight: bolder
+        padding: 1rem 1.5rem
+        text-align: center
+        cursor: pointer
+        border-radius: 12px
+
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: space-evenly
+        border: 3px solid g.$non-focus-element
+        width: 47%
+        color: g.$non-focus-element
+        font-weight: bolder
+
+        img
+            width: 30px
+            aspect-ratio: 1/1
+            display: inline
+
+        span
+            width: fit-content

@@ -2,3 +2,6 @@
 Xeubiart.git.exe
 *.env
 **/css/
+
+**.css.map
+**.css
